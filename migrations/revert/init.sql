@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+DROP TABLE "user","place","tag","city","placeHasTag","cityHasPlace";
 
 COMMIT;
