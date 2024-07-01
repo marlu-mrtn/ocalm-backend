@@ -3,8 +3,8 @@
 BEGIN;
 
 ALTER TABLE "user" 
-  ADD CONSTRAINT "userMailCheck" CHECK ("mail" ~ '([a-zA-Z\d]+){8,}'),
-  ADD CONSTRAINT "userPasswordCheck" CHECK ("password" ~ '^(?=.*\d)(?=.*[\w])(?=.*[\w])(?=.*[\w]).{8,}$');
+  ADD CONSTRAINT "userMailCheck" CHECK ("mail" ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),
+  ADD CONSTRAINT "userPasswordCheck" CHECK ("password" ~ '([a-zA-Z\d]+){8,}');
 
 ALTER TABLE "place"
   ADD CONSTRAINT "placeNameCheck" CHECK ("place"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
