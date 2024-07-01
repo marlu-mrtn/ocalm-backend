@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=ocalm
+
+01_init 2024-06-29T15:12:27Z camille gripon <gripon@Bidule> # DataBase initialization
+02_constraint 2024-06-29T15:16:00Z camille gripon <gripon@Bidule> # Adding validation constraints

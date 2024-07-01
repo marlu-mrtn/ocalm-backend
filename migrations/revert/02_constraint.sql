@@ -1,4 +1,4 @@
--- Deploy ocalm:init to pg
+-- Revert ocalm:02_constraint from pg
 
 BEGIN;
 
