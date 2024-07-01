@@ -2,7 +2,7 @@
 
 BEGIN;
 
-SELECT "journey" FROM "place" WHERE "journey" false;
-SELECT "description" FROM "place" WHERE "description" false;
+SELECT "journey" FROM "place" WHERE false;
+SELECT "description" FROM "place" WHERE false;
 
 ROLLBACK;
