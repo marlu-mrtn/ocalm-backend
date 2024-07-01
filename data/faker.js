@@ -23,7 +23,7 @@ const client = new Client({
 client.connect();
 
 const generateFakeData = async () => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
         const name = faker.person.fullName();
         const email = faker.internet.email();
         const password = faker.internet.password({ length: 10})
