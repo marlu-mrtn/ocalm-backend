@@ -31,10 +31,10 @@ CREATE TABLE "tag" (
 
 CREATE TABLE "city" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" text NOT NULL UNIQUE,
-    "postCode" int,
+    "name" text NOT NULL,
+    "postalCode" int,
     "department" int,
-    "region" varchar(50),
+    "region" text,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
