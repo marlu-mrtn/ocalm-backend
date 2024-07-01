@@ -18,3 +18,4 @@ ALTER TABLE "city"
   ADD CONSTRAINT "cityRegionCheck" CHECK ("region" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
 
 COMMIT;
+

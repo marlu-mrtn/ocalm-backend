@@ -4,6 +4,6 @@ BEGIN;
 
 ALTER TABLE "place"
     DROP COLUMN "journey",
-    DROP COLUMN "description" ; 
+    DROP COLUMN  "description";
 
 COMMIT;

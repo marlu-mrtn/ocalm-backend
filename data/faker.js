@@ -1,30 +1,32 @@
-import 'dotenv/config';
-import pkg from 'pg';
-import { faker } from '@faker-js/faker';
+import { config } from "dotenv";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import pkg from "pg";
+import { faker } from "@faker-js/faker";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const envPath = `${__dirname}/../.env`;
+config({ path: envPath });
 
 const { Client } = pkg;
-
-console.log('DB_USER:', process.env.DB_USER);
-console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
-console.log('DB_HOST:', process.env.DB_HOST);
-console.log('DB_NAME:', process.env.DB_NAME);
-console.log('DB_PORT:', process.env.DB_PORT);
 
 const client = new Client({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    port: parseInt(process.env.DB_PORT, 10),
 });
 
 client.connect();
 
 const generateFakeData = async () => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
         const name = faker.person.fullName();
         const email = faker.internet.email();
-        const password = faker.internet.password({ length: 20 })
+        const password = faker.internet.password({ length: 10})
 
         await client.query(
             'INSERT INTO "user" (username, mail, password) VALUES ($1, $2, $3)',
@@ -34,7 +36,6 @@ const generateFakeData = async () => {
 
     client.end();
 };
-
 
 generateFakeData()
     .then(() => console.log("Data generation completed"))
