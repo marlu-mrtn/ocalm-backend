@@ -2,6 +2,20 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+ALTER TABLE "user"
+  DROP CONSTRAINT "userMailCheck",
+  DROP CONSTRAINT "userPasswordCheck";
+
+ALTER TABLE "place"
+  DROP CONSTRAINT "placeNameCheck";
+
+ALTER TABLE "tag"
+  DROP CONSTRAINT "tagNameCheck",
+  DROP CONSTRAINT "tagColorCheck";
+
+ALTER TABLE "city"
+  DROP CONSTRAINT "cityNameCheck",
+  DROP CONSTRAINT "cityRegionCheck";
+
 
 COMMIT;
