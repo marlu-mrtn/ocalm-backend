@@ -15,6 +15,8 @@ ALTER TABLE "tag"
 
 ALTER TABLE "city"
   DROP CONSTRAINT "cityNameCheck",
+  DROP CONSTRAINT "cityPostalCodeCheck",
+  DROP CONSTRAINT "cityDepartmentCheck",
   DROP CONSTRAINT "cityRegionCheck";
 
 

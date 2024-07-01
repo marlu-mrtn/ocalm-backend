@@ -14,7 +14,9 @@ ALTER TABLE "tag"
   ADD CONSTRAINT "tagColorCheck" CHECK ("color" ~ '^#[a-zA-Z\d]{0,8}$');
 
 ALTER TABLE "city"
-  ADD CONSTRAINT "cityNameCheck" CHECK ("city"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$'),
+  ADD CONSTRAINT "cityNameCheck" CHECK ("city"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$'),  
+  ADD CONSTRAINT "cityPostalCodeCheck" CHECK ("postalCode"::text ~ '^[0-9]{,5}$'), 
+  ADD CONSTRAINT "cityDepartmentCheck" CHECK ("department"::text ~ '^[0-9]{,3}$'),
   ADD CONSTRAINT "cityRegionCheck" CHECK ("region" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
 
 COMMIT;

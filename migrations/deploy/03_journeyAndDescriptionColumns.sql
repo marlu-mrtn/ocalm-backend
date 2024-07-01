@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "place"
-    ADD COLUMN "journey" TEXT,
-    ADD COLUMN "description" TEXT;
+    ADD COLUMN "journey" text,
+    ADD COLUMN "description" text;
 
 COMMIT;
