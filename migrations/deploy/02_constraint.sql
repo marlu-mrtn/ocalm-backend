@@ -1,5 +1,5 @@
 -- Deploy ocalm:02_constraint to pg
-
+/*
 BEGIN;
 
 ALTER TABLE "user"
