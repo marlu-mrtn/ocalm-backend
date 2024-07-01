@@ -17,7 +17,7 @@ const client = new Client({
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT, 10), // Assurez-vous que le port est un nombre
+    port: parseInt(process.env.DB_PORT, 10),
 });
 
 client.connect();
@@ -26,7 +26,7 @@ const generateFakeData = async () => {
     for (let i = 0; i < 100; i++) {
         const name = faker.person.fullName();
         const email = faker.internet.email();
-        const password = faker.internet.password(20);
+        const password = faker.internet.password({length : 20});
 
         await client.query(
             'INSERT INTO "user" (username, mail, password) VALUES ($1, $2, $3)',
