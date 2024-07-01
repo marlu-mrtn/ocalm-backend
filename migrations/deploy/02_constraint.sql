@@ -15,8 +15,6 @@ ALTER TABLE "tag"
 
 ALTER TABLE "city"
   ADD CONSTRAINT "cityNameCheck" CHECK ("city"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$'),
-  ADD CONSTRAINT "cityPostalCodeCheck" CHECK ("postalCode" ~ '^[\d]{0,6}'),
-  ADD CONSTRAINT "cityDepartmentCheck" CHECK ("department" ~ '^[\d]{0,2}'),
   ADD CONSTRAINT "cityRegionCheck" CHECK ("region" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
 
 COMMIT;
