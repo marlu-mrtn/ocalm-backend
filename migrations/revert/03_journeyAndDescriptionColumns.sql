@@ -3,6 +3,7 @@
 BEGIN;
 
 ALTER TABLE "place"
-    DROP COLUMN "journey", "description";
+    DROP COLUMN "journey",
+    DROP COLUMN "description" ; 
 
 COMMIT;
