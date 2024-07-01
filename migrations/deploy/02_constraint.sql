@@ -1,9 +1,9 @@
 -- Deploy ocalm:02_constraint to pg
-/*
+
 BEGIN;
 
 ALTER TABLE "user" 
-  ADD CONSTRAINT "userMailCheck" CHECK ("mail" ~ '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),
+  ADD CONSTRAINT "userMailCheck" CHECK ("mail" ~ '^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$'),
   ADD CONSTRAINT "userPasswordCheck" CHECK ("password" ~ '^(?=.*\d)(?=.*[\w])(?=.*[\w])(?=.*[\w]).{8,}$');
 
 ALTER TABLE "place"
@@ -18,3 +18,4 @@ ALTER TABLE "city"
   ADD CONSTRAINT "cityRegionCheck" CHECK ("region" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
 
 COMMIT;
+
