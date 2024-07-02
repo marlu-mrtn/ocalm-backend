@@ -15,7 +15,7 @@ CREATE TABLE "place" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL UNIQUE,
     "gpsLocation" decimal,
-    "picture" text NULL,
+    "picture" text,
     "userId" int NOT NULL REFERENCES "user"("id"),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz

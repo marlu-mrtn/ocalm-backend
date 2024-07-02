@@ -1,5 +1,6 @@
 User + lieux + tag + ville
 
+
 SELECT DISTINCT 
 	"user"."username" AS "user",
 	"place"."name" AS "place",
