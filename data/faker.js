@@ -33,7 +33,15 @@ const generateFakeData = async () => {
             [name, email, password],
         );
     }
+    for (let i = 0; i < 10; i++) {
+        const name = faker.location.county();
+        const userId = await client.query('SELECT id FROM "user" ORDER BY RANDOM() LIMIT 1');
 
+        await client.query(
+            'INSERT INTO "place" (name, "userId") VALUES ($1, $2)',
+            [name, userId.rows[0].id],
+        );
+    }
     client.end();
 };
 
