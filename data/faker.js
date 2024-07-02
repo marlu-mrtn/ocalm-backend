@@ -1,24 +1,5 @@
-import { config } from "dotenv";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import pkg from "pg";
 import { faker } from "@faker-js/faker";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const envPath = `${__dirname}/../.env`;
-config({ path: envPath });
-
-const { Client } = pkg;
-
-const client = new Client({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT, 10),
-});
+import client from '../app/config/pg.client.js'
 
 client.connect();
 

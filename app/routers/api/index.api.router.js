@@ -1,6 +1,6 @@
 import express from 'express';
 import placeRouter from './place.api.router.js';
-import authentificationRouter from './authentification.api.router.js';
+import authenticationRouter from './authentication.api.router.js'
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router.use((_, res, next) => {
     next();
 });
 
-router.use('/authentification', authentificationRouter);
+router.use('/authentification', authenticationRouter);
 router.use('/place', placeRouter);
 
 export default router;
