@@ -14,8 +14,8 @@ CREATE TABLE "user" (
 CREATE TABLE "place" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL UNIQUE,
-    "gpsLocation" text NOT NULL,
-    "picture" text NULL,
+    "gpsLocation" decimal,
+    "picture" text,
     "userId" int NOT NULL REFERENCES "user"("id"),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
@@ -24,7 +24,7 @@ CREATE TABLE "place" (
 CREATE TABLE "tag" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL UNIQUE,
-    "color" VARCHAR(6) NULL,
+    "color" VARCHAR(6),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
@@ -32,9 +32,9 @@ CREATE TABLE "tag" (
 CREATE TABLE "city" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL,
-    "postalCode" int NULL,
-    "department" int NULL,
-    "region" text NULL,
+    "postalCode" int,
+    "department" int,
+    "region" text,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
