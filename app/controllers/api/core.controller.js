@@ -4,6 +4,7 @@ export default class CoreController {
   static properDatamapper = null;
 
   static async findAll(_, res) {
+    console.log('HELLO6')
     const rows = await this.properDatamapper.findAll();
     return res.json({ data: rows });
   }
@@ -20,7 +21,6 @@ export default class CoreController {
   static async create(req, res) {
     const input = req.body;
     const row = await this.properDatamapper.create(input);
-    // 201 Created
     return res.status(201).json({ data: row });
   }
 
@@ -34,7 +34,7 @@ export default class CoreController {
     return res.json({ data: row });
   }
 
-  static async delete(req, res, next) {
+  static async delete(req, res ) {
     const { id } = req.params;
     const deleted = await this.properDatamapper.delete(id);
     if (!deleted) {
