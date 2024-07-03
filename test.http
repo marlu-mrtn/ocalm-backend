@@ -1,0 +1,28 @@
+@endpoint=http://localhost:4000
+
+### Home
+GET {{endpoint}}/
+
+### getall
+GET {{endpoint}}/register
+
+
+### login
+POST {{endpoint}}/login
+Content-Type: application/json
+
+{
+    "email": "Hazel.Muller@gmail.com",
+    "password": "efzefze"
+}
+
+### Register
+POST {{endpoint}}/register
+Content-Type: application/json
+
+{
+    "username": "John Doe ",
+    "email": "johndoe@example.com",
+    "password": "efzefze",
+    "passwordConfirm": "efzefze"
+}
