@@ -21,8 +21,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "John Doe ",
-    "email": "johndoe@example.com",
+    "username": "Johzkejfhzn Doe ",
+    "email": "johskjdhfkfdjsndoe@example.com",
     "password": "efzefze",
     "passwordConfirm": "efzefze"
 }

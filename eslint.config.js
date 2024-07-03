@@ -1,15 +1,17 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import js from "@eslint/js";
 
 export default [
-    { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+    {
+        languageOptions: {
+            globals: { ...globals.browser, ...globals.node },
+            sourceType: 'module',
+        },
+    },
     pluginJs.configs.recommended,
-    js.configs.recommended,
-
     {
         rules: {
-            indent: ["error", 4],
+            "indent": ["error", 4],
             "comma-dangle": ["error", "always-multiline"],
             "eol-last": ["error", "always"],
             "no-trailing-spaces": "error",

@@ -1,11 +1,14 @@
 import express from 'express';
-import controller from '../../controllers/api/authentication.api.controller.js';    
+import Controller from '../../controllers/api/user.api.controller.js';
 
 const router = express.Router();
 
-router.route('/user/:id(\\d+)')
-    .get(controller.getInformation)
-    .patch(controller.updateUser)
-    .delete(controller.deleteUser);
+router.route('/')
+    .get(Controller.findAll.bind(Controller));
+
+// router.route('/user/:id(\\d+)')
+//     .get(Controller.getInformation.bind(Controller))
+//     .patch(Controller.updateUser.bind(Controller))
+//     .delete(Controller.deleteUser.bind(Controller));
 
 export default router;

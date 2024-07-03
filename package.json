@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:create": "sqitch deploy --verify",
+    "db:import": "node data/faker.js",
+    "db:reset": "sqitch revert -y && npm run db:create && npm run db:import"
   },
   "keywords": [],
   "author": "Team O'Calm",
