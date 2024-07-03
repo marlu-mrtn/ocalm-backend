@@ -24,18 +24,17 @@ export default class UserApiController extends CoreController {
 
             // Verifier que l'email est unique
             const userFound = await this.properDatamapper.findByEmail(email);
-            console.log(userFound);
+            console.log("on a trouvé le userFound" + userFound);
             if (userFound) {
-                throw new Error('Email déjà utilisé');
+                throw new Error('Email correspondant trouvé dans la base de données donc connectez-vous');
             }
-
+            console.log("Email non trouvé dans la base de données donc continuez l'inscription");
             // Créer un nouvel utilisateur
             const newUser = await this.properDatamapper.create({
                 username: username,
                 email: email,
                 password : password,
             });
-
             res.status(200).json(newUser);
 
         } catch (error) {

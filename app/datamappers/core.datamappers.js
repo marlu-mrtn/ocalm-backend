@@ -33,9 +33,10 @@ export default class CoreDatamapper {
     async create(input) {
         const result = await this.client.query(`
         INSERT INTO ${this.constructor.writeTableName}
-        VALUES ($1)`,
+        VALUES ($1)
+        RETURNING *`,
         [input]);
-        return result.rows[0];
+        return result.rows;
     }
 
     async update(id, input) {
