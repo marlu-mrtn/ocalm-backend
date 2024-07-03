@@ -5,7 +5,7 @@ BEGIN;
 CREATE TABLE "user" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "username" text NOT NULL UNIQUE,
-    "mail"  text NOT NULL UNIQUE,
+    "email"  text NOT NULL UNIQUE,
     "password" text NOT NULL,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz

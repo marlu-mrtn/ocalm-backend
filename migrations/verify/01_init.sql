@@ -6,7 +6,7 @@ SELECT "name", "gpsLocation", "picture", "userId" FROM "place" WHERE false;
 
 SELECT "name", "postalCode", "department", "region" FROM "city" WHERE false;
 
-SELECT "username", "mail", "password" FROM "user" WHERE false;
+SELECT "username", "email", "password" FROM "user" WHERE false;
 
 SELECT "name", "color" FROM "tag" WHERE false;
 

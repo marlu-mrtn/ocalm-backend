@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "user"
-  DROP CONSTRAINT "userMailCheck",
+  DROP CONSTRAINT "userEmailCheck",
   DROP CONSTRAINT "userPasswordCheck";
 
 ALTER TABLE "place"

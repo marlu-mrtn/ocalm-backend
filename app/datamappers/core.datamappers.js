@@ -3,9 +3,10 @@ export default class CoreDatamapper {
     static writeTableName = null;
     static _instance;
 
+    // Ce constructeur (singleton) servira de base de conception pour les datamapper.
+
     constructor(client) {
         this.client = client;
-        // Afin d'optimiser la mémoire du processus on peut faire en sorte de retourneer toujours la même instance a partir de la première instanciation (Singleton)
         if(!this.constructor._instance){
             this.constructor._instance = this;
         }

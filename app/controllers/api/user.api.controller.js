@@ -12,24 +12,25 @@ export default class UserApiController extends CoreController {
         try {
             const { username, email, password, passwordConfirm } = req.body;
 
-            // Vérifier que tous les champs sont remplis
+            // // Vérifier que tous les champs sont remplis
             // if (!username || !email || !password || !passwordConfirm) {
             //     throw new Error('Champs manquants')
             // }
 
-            // Verifier que le password correspond au passwordConfirm
+            // // Verifier que le password correspond au passwordConfirm
             // if (password !== passwordConfirm) {
             //     throw new Error('Mots de passe non correspondants')
             // }
 
             // Verifier que l'email est unique
-            const userFound = await userDatamapper.findByEmail(email);
+            const userFound = await this.properDatamapper.findByEmail(email);
+            console.log(userFound);
             if (userFound) {
                 throw new Error('Email déjà utilisé');
             }
 
             // Créer un nouvel utilisateur
-            const newUser = await userDatamapper.create({
+            const newUser = await this.properDatamapper.create({
                 username: username,
                 email: email,
                 password : password,

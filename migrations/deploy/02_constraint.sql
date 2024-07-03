@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "user" 
-  ADD CONSTRAINT "userMailCheck" CHECK ("mail" ~ '^[a-zA-Z0-9._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,4}$'),
+  ADD CONSTRAINT "userEmailCheck" CHECK ("email" ~ '^[a-zA-Z0-9._-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,4}$'),
   ADD CONSTRAINT "userPasswordCheck" CHECK ("password" ~ '([a-zA-Z0-9._-]+){8,}');
 
 ALTER TABLE "place"

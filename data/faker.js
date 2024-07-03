@@ -4,13 +4,13 @@ import client from '../app/config/pg.client.js'
 client.connect();
 
 const generateFakeData = async () => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
         const name = faker.person.fullName();
         const email = faker.internet.email();
         const password = faker.internet.password({ length: 10})
 
         await client.query(
-            'INSERT INTO "user" (username, mail, password) VALUES ($1, $2, $3)',
+            'INSERT INTO "user" (username, email, password) VALUES ($1, $2, $3)',
             [name, email, password],
         );
     }
