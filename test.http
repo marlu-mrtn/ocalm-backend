@@ -9,13 +9,16 @@ GET {{endpoint}}/register
 ### getallPlaces
 GET {{endpoint}}/place
 
+### getOneUser
+GET {{endpoint}}/user/5
+
 ### login
 POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lea98@yahoo.com",
-    "password": "efzefze"
+    "email": "Lesdfa98@yahoo.com",
+    "password": "SY131Pl4i2"
 }
 
 ### Register
@@ -24,6 +27,12 @@ Content-Type: application/json
 
 {
     "username": "Jenna Dooley",
-    "email": "Lea98@yahoo.com",
-    "password": "efEFze123fze"
+    "email": "Lekjghkga98@yahoo.com",
+    "password": "efEFze123fze",
+    "passwordConfirm": "efEFze123fze"
 }
+
+
+###
+DELETE {{endpoint}}/user/5
+Content-Type: application/json

@@ -24,7 +24,7 @@ export default class CoreDatamapper {
     async findById(id) {
         const result = await this.client.query(`
         SELECT *
-        FROM ${this.constructor.readTableName} 
+        FROM "${this.constructor.readTableName}" 
         WHERE id = $1`,
         [id]);
         return result.rows[0];
@@ -32,7 +32,7 @@ export default class CoreDatamapper {
 
     async create(input) {
         const result = await this.client.query(`
-        INSERT INTO ${this.constructor.writeTableName}
+        INSERT INTO "${this.constructor.writeTableName}"
         VALUES ($1)
         RETURNING *`,
         [input]);
@@ -41,7 +41,7 @@ export default class CoreDatamapper {
 
     async update(id, input) {
         const result = await this.client.query(`
-        UPDATE ${this.constructor.writeTableName}
+        UPDATE "${this.constructor.writeTableName}"
         SET ($2)
         WHERE id = $1`,
         [id, input]);
@@ -50,7 +50,7 @@ export default class CoreDatamapper {
 
     async delete(id) {
         const result = await this.client.query(`
-        DELETE FROM ${this.constructor.writeTableName}
+        DELETE FROM "${this.constructor.writeTableName}"
         WHERE id = $1`,
         [id]);
 
