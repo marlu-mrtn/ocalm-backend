@@ -14,7 +14,7 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Hazel.Muller@gmail.com",
+    "email": "Lea98@yahoo.com",
     "password": "efzefze"
 }
 
@@ -23,7 +23,7 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Charles",
-    "email": "dbjkdhkjdhfkfdjsndoe@example.com",
+    "username": "Jenna Dooley",
+    "email": "Lea98@yahoo.com",
     "password": "efEFze123fze"
 }
