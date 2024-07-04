@@ -6,6 +6,8 @@ GET {{endpoint}}/
 ### getall
 GET {{endpoint}}/register
 
+### getallPlaces
+GET {{endpoint}}/place
 
 ### login
 POST {{endpoint}}/login
@@ -21,7 +23,7 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "JohkjhnDoe",
-    "email": "johskjhgdbjkdhkjdhfkfdjsndoe@example.com",
+    "username": "Charles",
+    "email": "dbjkdhkjdhfkfdjsndoe@example.com",
     "password": "efEFze123fze"
 }
