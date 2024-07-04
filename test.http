@@ -14,7 +14,7 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lea98@yahoo.com",
+    "email": "Hazel.Muller@gmail.com",
     "password": "efzefze"
 }
 
@@ -23,7 +23,11 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Jenna Dooley",
-    "email": "Lea98@yahoo.com",
+    "username": "Charles",
+    "email": "dbjkdhkjdhfkfdjsndoe@example.com",
     "password": "efEFze123fze"
 }
+
+### Delete User
+DELETE {{endpoint}}/user/16
+Content-Type: application/json

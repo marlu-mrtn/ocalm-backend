@@ -13,7 +13,7 @@ router.use((_, res, next) => {
     next();
 });
 
-router.use('/', userRouter);
+router.use('/user', userRouter);
 router.use('/register', registerRouter);
 // router.use('/login', loginRouter);
 router.use('/place', placeRouter);
