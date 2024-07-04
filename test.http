@@ -9,13 +9,21 @@ GET {{endpoint}}/register
 ### getallPlaces
 GET {{endpoint}}/place
 
+### getOneUser
+GET {{endpoint}}/user/5
+
 ### login
 POST {{endpoint}}/login
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "email": "Hazel.Muller@gmail.com",
     "password": "efzefze"
+=======
+    "email": "Lesdfa98@yahoo.com",
+    "password": "SY131Pl4i2"
+>>>>>>> origin/devRoadLogin
 }
 
 ### Register
@@ -23,6 +31,7 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "username": "Charles",
     "email": "dbjkdhkjdhfkfdjsndoe@example.com",
     "password": "efEFze123fze"
@@ -31,3 +40,15 @@ Content-Type: application/json
 ### Delete User
 DELETE {{endpoint}}/user/16
 Content-Type: application/json
+=======
+    "username": "Jenna Dooley",
+    "email": "Lekjghkga98@yahoo.com",
+    "password": "efEFze123fze",
+    "passwordConfirm": "efEFze123fze"
+}
+
+
+###
+DELETE {{endpoint}}/user/5
+Content-Type: application/json
+>>>>>>> origin/devRoadLogin

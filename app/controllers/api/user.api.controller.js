@@ -1,4 +1,4 @@
-import CoreController from './core.controller.js';
+import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 
 export default class UserApiController extends CoreController {
@@ -12,19 +12,18 @@ export default class UserApiController extends CoreController {
         try {
             const { username, email, password, passwordConfirm } = req.body;
 
-            // // Vérifier que tous les champs sont remplis
-            // if (!username || !email || !password || !passwordConfirm) {
-            //     throw new Error('Champs manquants')
-            // }
+            // Vérifier que tous les champs sont remplis
+            if (!username || !email || !password || !passwordConfirm) {
+                throw new Error('Champs manquants')
+            }
 
-            // // Verifier que le password correspond au passwordConfirm
-            // if (password !== passwordConfirm) {
-            //     throw new Error('Mots de passe non correspondants')
-            // }
+            // Verifier que le password correspond au passwordConfirm
+            if (password !== passwordConfirm) {
+                throw new Error('Mots de passe non correspondants')
+            }
 
             // Vérifier que l'email correspond
             const userFound = await this.properDatamapper.findByEmail(email);
-            console.log(`this is : ${userFound}`);
 
             if (userFound) {
                 throw new Error('E-mail correspondant trouvé dans la base de données donc connectez-vous');
