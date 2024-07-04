@@ -17,13 +17,8 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-    "email": "Hazel.Muller@gmail.com",
-    "password": "efzefze"
-=======
     "email": "Lesdfa98@yahoo.com",
     "password": "SY131Pl4i2"
->>>>>>> origin/devRoadLogin
 }
 
 ### Register
@@ -31,16 +26,6 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-    "username": "Charles",
-    "email": "dbjkdhkjdhfkfdjsndoe@example.com",
-    "password": "efEFze123fze"
-}
-
-### Delete User
-DELETE {{endpoint}}/user/16
-Content-Type: application/json
-=======
     "username": "Jenna Dooley",
     "email": "Lekjghkga98@yahoo.com",
     "password": "efEFze123fze",
@@ -49,6 +34,5 @@ Content-Type: application/json
 
 
 ###
-DELETE {{endpoint}}/user/5
+DELETE {{endpoint}}/user/2
 Content-Type: application/json
->>>>>>> origin/devRoadLogin
