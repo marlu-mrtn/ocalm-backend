@@ -22,13 +22,16 @@ export default class UserApiController extends CoreController {
             //     throw new Error('Mots de passe non correspondants')
             // }
 
-            // Verifier que l'email est unique
+            // Vérifier que l'email correspond
             const userFound = await this.properDatamapper.findByEmail(email);
-            console.log("on a trouvé le userFound" + userFound);
+            console.log(`this is : ${userFound}`);
+
             if (userFound) {
-                throw new Error('Email correspondant trouvé dans la base de données donc connectez-vous');
+                throw new Error('E-mail correspondant trouvé dans la base de données donc connectez-vous');
             }
-            console.log("Email non trouvé dans la base de données donc continuez l'inscription");
+
+            console.log("E-mail non trouvé dans la base de données donc continuez l'inscription");
+
             // Créer un nouvel utilisateur
             const newUser = await this.properDatamapper.create({
                 username: username,
@@ -42,17 +45,25 @@ export default class UserApiController extends CoreController {
         }
     }
 
-    // async login(req, res) {
-    //     try {
-    //         const { email, password } = req.body;
-    //         const user = await authenticationDatamapper.login(email, password);
-    //         if (!user.email == user.req.body){
-    //             res.status(404).json({message: 'User not found' });
-    //         }
-    //          res.status(200).json(user);
+    static async login(req, res) {
+        try {
+            const { email, password } = req.body;
+            const userFound = await this.properDatamapper.findByEmail(email);
+            
+            if (!userFound) {
+                res.status(400).send('Utilisateur non trouvé(mail incorrect)');
+            }
 
-    //     } catch (error) {
-    //         res.status(500).json(error);
-    //     }
-    // }
+            if (userFound.password !== req.body.password){
+                console.log(`password is : ${req.body.password}`);
+
+                res.status(400).send('Utilisateur non trouvé(password incorrect)');
+            }
+             res.status(200).send('Utilisateur trouvé(mail and password)');
+             
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Server Error');
+        }
+    }
 }
