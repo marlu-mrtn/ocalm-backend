@@ -8,4 +8,5 @@ router.route('/')
     .post(Controller.signUp.bind(Controller))
     .get(Controller.findAll.bind(Controller))
 
+
 export default router;

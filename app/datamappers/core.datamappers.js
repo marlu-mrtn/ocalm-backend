@@ -4,7 +4,6 @@ export default class CoreDatamapper {
     static _instance;
 
     // Ce constructeur (singleton) servira de base de conception pour les datamapper.
-
     constructor(client) {
         this.client = client;
         if(!this.constructor._instance){
