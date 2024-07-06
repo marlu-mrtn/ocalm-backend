@@ -5,3 +5,4 @@
 02_constraint 2024-06-29T15:16:00Z camille gripon <gripon@Bidule> # Adding validation constraints
 03_journeyAndDescriptionColumns 2024-07-01T11:06:56Z camille gripon <gripon@Bidule> # Adding journey and description columns
 04_slugColumn 2024-07-02T08:33:04Z camille gripon <gripon@Bidule> # Adding slug column
+05_passwordStrongerRegex 2024-07-06T18:42:17Z camille gripon <gripon@Bidule> # adding stronger regex at password constraint
