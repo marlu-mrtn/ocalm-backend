@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "user" 
-    DROP CONSTRAINT "strongUserPasswordCheck",
+  DROP CONSTRAINT IF EXISTS "strongUserPasswordCheck",
   ADD CONSTRAINT "strongUserPasswordCheck" CHECK ("password" ~ '^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%&*?]).{8,}');
 
 COMMIT;
