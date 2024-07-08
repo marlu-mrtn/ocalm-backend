@@ -18,14 +18,6 @@ export default class UserDatamapper extends CoreDatamapper {
         return result.rows[0];
     }
 
-    async create({username, email, password}) {
-        const result = await this.client.query(`
-         INSERT INTO "${this.constructor.writeTableName}" (username, email, password)
-         VALUES ($1, $2, $3)
-         RETURNING *`,
-        [username, email, password]);
-        return result.rows;
-    }
 
     async login({email, password}) {
         const result = await this.client.query(`
