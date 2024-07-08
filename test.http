@@ -41,16 +41,16 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Jenna Dooley",
-    "email": "Lekjghkga98@yahoo.com",
-    "password": "efEFze123fze",
-    "passwordConfirm": "efEFze123fze"
+    "username": "Doobie Dooley",
+    "email": "hello@yahoo.com",
+    "password": "1234aA@!",
+    "passwordConfirm": "1234aA@!"
 }
 
 ############################################# USER
 
-### /user GET ONE USER
-GET {{endpoint}}/user/1
+### /user GET ONE USER ------------- OK
+GET {{endpoint}}/user/2
 
 ### /user UPDATE USER
 PATCH {{endpoint}}/user/1
@@ -59,10 +59,9 @@ Content-Type: application/json
 {
     "username": "Jenna Dooley",
     "email": "Lekjghkga98@yahoo.com",
-    "password": "efEFze123fze",
-    "passwordConfirm": "efEFze123fze"
+    "password": "efEFze123fze"
 }
 
-### /user DELETE USER
+### /user DELETE USER ------------- OK
 DELETE {{endpoint}}/user/1
 

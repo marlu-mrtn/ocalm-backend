@@ -18,5 +18,4 @@ export default class UserDatamapper extends CoreDatamapper {
         return result.rows[0];
     }
 
-
 }

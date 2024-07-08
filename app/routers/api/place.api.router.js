@@ -5,14 +5,11 @@ const router = express.Router();
 
 
 router.route('/')
-    .get(Controller.findAll.bind(Controller));
+    .get(Controller.findAll.bind(Controller))
+    .post(Controller.create.bind(Controller));
 router.route('/:id(\\d+)')
-    .get(Controller.findById.bind(Controller));
-/*
-placeRouter.get('/places', controller.getAllPlaces);
-placeRouter.get('places/:id', controller.getOnePlace);
-placeRouter.post('places', controller.postPlace);
-placeRouter.patch('/places/:id', controller.updatePlace);
-placeRouter.delete('/places/:id', controller.deletePlace);
-*/
+    .get(Controller.findById.bind(Controller))
+    .patch(Controller.update.bind(Controller))
+    .delete(Controller.delete.bind(Controller));
+
 export default router;
