@@ -40,25 +40,18 @@ export default class CoreDatamapper {
         console.log(`columns : ${columns}`)
         // on créé les $1, $2, $3, etc.
         const valuesPosition = columnName.map((_, index) => `$${index + 1}`).join(', ');
-        console.log(`valuesPosition : ${valuesPosition}`)   
-    
+        console.log(`valuesPosition : ${valuesPosition}`)
+
         const result = await this.client.query(`
         INSERT INTO "${this.constructor.writeTableName}" (${columns})
         VALUES (${valuesPosition})
         RETURNING *`
         , values);
-    
+
         return result.rows;
     }
 
-    async create({username, email, password}) {
-        const result = await this.client.query(`
-         INSERT INTO "${this.constructor.writeTableName}" (username, email, password)
-         VALUES ($1, $2, $3)
-         RETURNING *`,
-        [username, email, password]);
-        return result.rows;
-    }
+
 
     async update(id, input) {
         const result = await this.client.query(`

@@ -20,8 +20,8 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lek@yahoo.com",
-    "password": "efEFze123fze"
+    "email": "Lek@yahoto.com",
+    "password": "efEFze123fze@"
 }
 
 ### Register
@@ -29,10 +29,10 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "oley",
-    "email": "Lek@yahoo.com",
-    "password": "efEFze123fze",
-    "passwordConfirm": "efEFze123fze"
+    "username": "olety",
+    "email": "Lek@yahoto.com",
+    "password": "efEFze123fze@",
+    "passwordConfirm": "efEFze123fze@"
 }
 
 
