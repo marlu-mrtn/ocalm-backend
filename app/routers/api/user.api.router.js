@@ -3,8 +3,10 @@ import Controller from '../../controllers/api/user.api.controller.js';
 
 const router = express.Router();
 
-router.route('/:id(\\d+)')
+router.route('/')
     .get(Controller.findAll.bind(Controller))
+router.route('/:id(\\d+)')
+    .get(Controller.findById.bind(Controller))
     .delete(Controller.delete.bind(Controller));
 
 

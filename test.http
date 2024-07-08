@@ -9,8 +9,11 @@ GET {{endpoint}}/register
 ### getallPlaces
 GET {{endpoint}}/place
 
+### getPlacebyId
+GET {{endpoint}}/place/1
+
 ### getOneUser
-GET {{endpoint}}/user/5
+GET {{endpoint}}/user/1
 
 ### login
 POST {{endpoint}}/login

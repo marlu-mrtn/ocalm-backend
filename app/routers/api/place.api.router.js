@@ -1,11 +1,13 @@
 import express from 'express';
-import Controller from '../../controllers/api/place.api.controller.js' 
+import Controller from '../../controllers/api/place.api.controller.js' ;
 
 const router = express.Router();
 
 
 router.route('/')
     .get(Controller.findAll.bind(Controller));
+router.route('/:id(\\d+)')
+    .get(Controller.findById.bind(Controller));
 /*
 placeRouter.get('/places', controller.getAllPlaces);
 placeRouter.get('places/:id', controller.getOnePlace);
