@@ -7,7 +7,7 @@ ALTER TABLE "user"
   ADD CONSTRAINT "userPasswordCheck" CHECK ("password" ~ '([a-zA-Z0-9._-]+){8,}');
 
 ALTER TABLE "place"
-  ADD CONSTRAINT "placeNameCheck" CHECK ("place"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
+  ADD CONSTRAINT "placeNameCheck" CHECK ("place"."name" ~ '[a-zA-Z]+([\s]*[éèêÉÈÊàÀôÔûÛ''-]*)');
 
 ALTER TABLE "tag"
   ADD CONSTRAINT "tagNameCheck" CHECK ("tag"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$'),
@@ -15,7 +15,7 @@ ALTER TABLE "tag"
 
 ALTER TABLE "city"
   ADD CONSTRAINT "cityNameCheck" CHECK ("city"."name" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$'),  
-  ADD CONSTRAINT "cityPostalCodeCheck" CHECK ("postalCode"::text ~ '^[0-9]{,5}$'), 
+  ADD CONSTRAINT "cityPostalCodeCheck" CHECK ("postal_code"::text ~ '^[0-9]{,5}$'), 
   ADD CONSTRAINT "cityDepartmentCheck" CHECK ("department"::text ~ '^[0-9]{,3}$'),
   ADD CONSTRAINT "cityRegionCheck" CHECK ("region" ~ '^[a-zA-Z]+([\s-][a-zA-ZéèêÉÈÊàÀôÔûÛ]+)*$');
 

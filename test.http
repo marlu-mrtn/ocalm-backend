@@ -1,29 +1,38 @@
 @endpoint=http://localhost:4000
 
-############################################# PLACES
+############################################# PLACES OK
 
-### /places GET ALL PLACES
-GET {{endpoint}}/places ------------- OK
+### /places GET ALL PLACES ------------- OK
+GET {{endpoint}}/places 
 
-### /places CREATE PLACE
+### /places CREATE PLACE ------------- OK
 POST {{endpoint}}/places
 Content-Type: application/json
 
 {
     "name": "Le parc de la tête d'Or",
-    "userId": "4"
+    "journey": "Pour y aller prenez vos deux jambes et marchez",
+    "description": "Le parc de la tête d'Or est un parc urbain de Lyon, situé dans le 6ᵉ arrondissement de Lyon, en France. Avec une superficie de 117 hectares, il est l'un des plus grands parcs urbains de France.",
+    "user_id": "4"
 }
 
-### /places GET ONE PLACE
-GET {{endpoint}}/places/5 ------------- OK
+### /places GET ONE PLACE ------------- OK
+GET {{endpoint}}/places/11 
 
-### /places UPDATE PLACE
-PATCH {{endpoint}}/places/1
+### /places UPDATE PLACE  ------------- OK
+PATCH {{endpoint}}/places/11
+Content-Type: application/json
+
+{
+    "name": "Le parc",
+    "journey": "Pour y aller prenez vos deux jambes ET VOS PIEDS et marchez",
+    "description": "Le parc de la tête d'Or est un parc urbain de Lyon, situé dans le 6ᵉ arrondissement de Lyon, en France. Avec une superficie de 117 hectares, il est l'un des plus grands parcs urbains de France."
+}
 
 ### /places DELETE PLACE ------------- OK
-DELETE {{endpoint}}/places/1
+DELETE {{endpoint}}/places/10
 
-############################################# LOGIN
+############################################# LOGIN OK
 
 ### / login LOGIN ------------- OK
 POST {{endpoint}}/login
@@ -34,7 +43,7 @@ Content-Type: application/json
     "password": "#1gKiJItKHLNp2"
 }
 
-############################################# REGISTER
+############################################# REGISTER OK
 
 ### /register CREATE NEW USER ------------- OK
 POST {{endpoint}}/register
@@ -47,19 +56,19 @@ Content-Type: application/json
     "passwordConfirm": "#1gKiJItKHLNp2"
 }
 
-############################################# USER
+############################################# USER OK
 
 ### /user GET ONE USER ------------- OK
 GET {{endpoint}}/user/2
 
-### /user UPDATE USER
+### /user UPDATE USER ------------- OK
 PATCH {{endpoint}}/user/3
 Content-Type: application/json
 
 {
-    "username": "Jenna Dooley",
-    "email": "Lekjghkga98@yahoo.com",
-    "password": "efEFze123fze"
+    "username": "Doobie",
+    "email": "Doobidoo@yahoo.com",
+    "password": "#1gKiJItKHLNp2"
 }
 
 ### /user DELETE USER ------------- OK
