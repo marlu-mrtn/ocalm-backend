@@ -4,7 +4,7 @@ BEGIN;
 
 ALTER TABLE "user"
   DROP CONSTRAINT "userEmailCheck",
-  DROP CONSTRAINT "userPasswordCheck";
+  DROP CONSTRAINT IF EXISTS "userPasswordCheck";
 
 ALTER TABLE "place"
   DROP CONSTRAINT "placeNameCheck";
