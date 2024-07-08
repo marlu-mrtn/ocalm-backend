@@ -20,7 +20,7 @@ Content-Type: application/json
 GET {{endpoint}}/places/11 
 
 ### /places UPDATE PLACE  ------------- OK
-PATCH {{endpoint}}/places/11
+PATCH {{endpoint}}/places/8
 Content-Type: application/json
 
 {
@@ -50,8 +50,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Doobie Dooley",
-    "email": "hello@yahoo.com",
+    "username": "Doobidoohoohoo Dooley",
+    "email": "helloyoudarling@yahoo.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }
@@ -62,7 +62,7 @@ Content-Type: application/json
 GET {{endpoint}}/user/2
 
 ### /user UPDATE USER ------------- OK
-PATCH {{endpoint}}/user/3
+PATCH {{endpoint}}/user/6
 Content-Type: application/json
 
 {
