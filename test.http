@@ -1,41 +1,68 @@
 @endpoint=http://localhost:4000
 
-### Home
-GET {{endpoint}}/
+############################################# PLACES
 
-### getall
-GET {{endpoint}}/register
+### /places GET ALL PLACES
+GET {{endpoint}}/places
 
-### getallPlaces
-GET {{endpoint}}/place
+### /places CREATE PLACE
+POST {{endpoint}}/places
+Content-Type: application/json
 
-### getPlacebyId
-GET {{endpoint}}/place/1
+{
+    "name": "Le parc de la tête d'Or",
+    "userId": "4"
+}
 
-### getOneUser
-GET {{endpoint}}/user/1
+### /places GET ONE PLACE
+GET {{endpoint}}/places/1
 
-### login
+### /places UPDATE PLACE
+PATCH {{endpoint}}/places/1
+
+### /places DELETE PLACE
+DELETE {{endpoint}}/places/1
+
+############################################# LOGIN
+
+### / login LOGIN
 POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lek@yahoto.com",
-    "password": "efEFze123fze@"
+    "email": "Lesdfa98@yahoo.com",
+    "password": "SY131Pl4i2"
 }
 
-### Register
+############################################# REGISTER
+
+### /register CREATE NEW USER
 POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "olety",
-    "email": "Lek@yahoto.com",
-    "password": "efEFze123fze@",
-    "passwordConfirm": "efEFze123fze@"
+    "username": "Jenna Dooley",
+    "email": "Lekjghkga98@yahoo.com",
+    "password": "efEFze123fze",
+    "passwordConfirm": "efEFze123fze"
 }
 
+############################################# USER
 
-###
-DELETE {{endpoint}}/user/2
+### /user GET ONE USER
+GET {{endpoint}}/user/1
+
+### /user UPDATE USER
+PATCH {{endpoint}}/user/1
 Content-Type: application/json
+
+{
+    "username": "Jenna Dooley",
+    "email": "Lekjghkga98@yahoo.com",
+    "password": "efEFze123fze",
+    "passwordConfirm": "efEFze123fze"
+}
+
+### /user DELETE USER
+DELETE {{endpoint}}/user/1
+
