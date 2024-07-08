@@ -7,6 +7,7 @@ router.route('/')
     .get(Controller.findAll.bind(Controller))
 router.route('/:id(\\d+)')
     .get(Controller.findById.bind(Controller))
+    .patch(Controller.update.bind(Controller))
     .delete(Controller.delete.bind(Controller));
 
 

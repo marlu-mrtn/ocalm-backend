@@ -3,7 +3,7 @@
 ############################################# PLACES
 
 ### /places GET ALL PLACES
-GET {{endpoint}}/places
+GET {{endpoint}}/places ------------- OK
 
 ### /places CREATE PLACE
 POST {{endpoint}}/places
@@ -15,36 +15,36 @@ Content-Type: application/json
 }
 
 ### /places GET ONE PLACE
-GET {{endpoint}}/places/1
+GET {{endpoint}}/places/5 ------------- OK
 
 ### /places UPDATE PLACE
 PATCH {{endpoint}}/places/1
 
-### /places DELETE PLACE
+### /places DELETE PLACE ------------- OK
 DELETE {{endpoint}}/places/1
 
 ############################################# LOGIN
 
-### / login LOGIN
+### / login LOGIN ------------- OK
 POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lesdfa98@yahoo.com",
-    "password": "SY131Pl4i2"
+    "email": "Lekjghkga98@yahoo.com",
+    "password": "#1gKiJItKHLNp2"
 }
 
 ############################################# REGISTER
 
-### /register CREATE NEW USER
+### /register CREATE NEW USER ------------- OK
 POST {{endpoint}}/register
 Content-Type: application/json
 
 {
     "username": "Doobie Dooley",
     "email": "hello@yahoo.com",
-    "password": "1234aA@!",
-    "passwordConfirm": "1234aA@!"
+    "password": "#1gKiJItKHLNp2",
+    "passwordConfirm": "#1gKiJItKHLNp2"
 }
 
 ############################################# USER
@@ -53,7 +53,7 @@ Content-Type: application/json
 GET {{endpoint}}/user/2
 
 ### /user UPDATE USER
-PATCH {{endpoint}}/user/1
+PATCH {{endpoint}}/user/3
 Content-Type: application/json
 
 {

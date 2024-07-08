@@ -41,8 +41,8 @@ export default class CoreDatamapper {
         const result = await this.client.query(`
         INSERT INTO "${this.constructor.writeTableName}" (${columns})
         VALUES (${valuesPosition})
-        RETURNING *`
-        , values);
+        RETURNING *`,
+        values);
 
         return result.rows;
     }
@@ -50,19 +50,23 @@ export default class CoreDatamapper {
 
     async update(id, input) {
         const columnNames = Object.keys(input);
+        console.log(columnNames);
         // values = valeurs des colonnes
         const values = Object.values(input);
+        console.log(values)
         // Si plusieurs colonnes, on les sépare par des virgules
         const columns = columnNames.join(', ');
+        console.log(columns)
         // on créé les $1, $2, $3, etc.
         const valuesPosition = columnNames.map((_, index) => `$${index + 2}`).join(', ');
+        console.log(valuesPosition)
         
         const result = await this.client.query(`
         UPDATE "${this.constructor.writeTableName}" 
         SET ${columns} = ${valuesPosition}
         WHERE id = $1
         RETURNING *`,
-        [id, ...values]);
+        [id, values]);
 
         return result.rows[0];
     }
