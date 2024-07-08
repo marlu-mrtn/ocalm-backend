@@ -48,17 +48,16 @@ export default class UserApiController extends CoreController {
         try {
             const { email, password } = req.body;
             const userFound = await this.properDatamapper.findByEmail(email);
-            
             if (!userFound) {
-                res.status(400).send('Utilisateur non trouvé(mail incorrect)');
+                return res.status(400).send('Utilisateur non trouvé(mail incorrect)');
             }
 
             if (userFound.password !== req.body.password){
-                res.status(400).send('Utilisateur non trouvé(password incorrect)');
+                return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
-             res.status(200).send('Utilisateur trouvé(mail and password)');
+            return res.status(200).send('Utilisateur trouvé(mail and password)');
 
-             
+
 
         } catch (error) {
             console.error(error);
