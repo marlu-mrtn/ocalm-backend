@@ -4,5 +4,7 @@ BEGIN;
 
 ALTER TABLE "place"
     DROP COLUMN "slug";
+    DROP CONSTRAINT "placeSlugCheck";
+
 
 COMMIT;

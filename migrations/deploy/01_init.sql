@@ -14,9 +14,9 @@ CREATE TABLE "user" (
 CREATE TABLE "place" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL UNIQUE,
-    "gpsLocation" decimal,
+    "gps_location" decimal,
     "picture" text,
-    "userId" int NOT NULL REFERENCES "user"("id"),
+    "user_id" int NOT NULL REFERENCES "user"("id"),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
@@ -32,7 +32,7 @@ CREATE TABLE "tag" (
 CREATE TABLE "city" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL,
-    "postalCode" int,
+    "postal_code" int,
     "department" int,
     "region" text,
     "created_at" timestamptz NOT NULL DEFAULT now(),
@@ -41,16 +41,16 @@ CREATE TABLE "city" (
 
 CREATE TABLE "placeHasTag" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "placeId" int NOT NULL REFERENCES "place"("id"),
-    "tagId" int NOT NULL REFERENCES "tag"("id"),
+    "place_id" int NOT NULL REFERENCES "place"("id"),
+    "tag_id" int NOT NULL REFERENCES "tag"("id"),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
 
 CREATE TABLE "cityHasPlace" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "placeId" int NOT NULL REFERENCES "place"("id"),
-    "cityId" int NOT NULL REFERENCES "city"("id"),
+    "place_id" int NOT NULL REFERENCES "place"("id"),
+    "city_id" int NOT NULL REFERENCES "city"("id"),
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );

@@ -20,7 +20,7 @@ const generateFakeData = async () => {
         const userId = await client.query('SELECT id FROM "user" ORDER BY RANDOM() LIMIT 1');
 
         await client.query(
-            'INSERT INTO "place" (name, "userId") VALUES ($1, $2)',
+            'INSERT INTO "place" (name, "user_id") VALUES ($1, $2)',
             [name, userId.rows[0].id],
         );
     }

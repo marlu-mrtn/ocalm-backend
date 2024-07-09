@@ -7,7 +7,8 @@
   "scripts": {
     "db:create": "sqitch deploy --verify",
     "db:import": "node data/faker.js",
-    "db:reset": "sqitch revert -y && npm run db:create && npm run db:import"
+    "db:reset": "sqitch revert -y && npm run db:create && npm run db:import",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Team O'Calm",
