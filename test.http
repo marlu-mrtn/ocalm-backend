@@ -39,8 +39,8 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Lekjghkga98@yahoo.fr",
-    "password": "#1gKiJItKHLNp2"
+    "email": "Wilma.Corkery@yahoo.com",
+    "password": "#1gKFwZYu06UH9"
 }
 
 ############################################# REGISTER OK

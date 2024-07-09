@@ -55,7 +55,12 @@ export default class UserApiController extends CoreController {
             if (userFound.password !== password){
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
-            return res.status(200).send('Utilisateur trouvé(mail and password)');
+            return res.status(200).json({
+                id: userFound.id,
+                username: userFound.username,
+                email: userFound.email,
+            });
+
 
 
 
