@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "place"
-    DROP COLUMN "slug";
+    DROP COLUMN "slug",
     DROP CONSTRAINT IF EXISTS "placeSlugCheck";
 
 
