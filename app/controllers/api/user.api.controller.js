@@ -42,7 +42,7 @@ export default class UserApiController extends CoreController {
 
             res.status(200).json({
               message: "User registered successfully",
-              userId: newUser.id
+              userId: newUser.id,
             });
             
         } catch (error) {
@@ -66,7 +66,7 @@ export default class UserApiController extends CoreController {
             }
 
             const token = jwt.sign({ userId: userFound.id }, process.env.JWT_SECRET);
-            res.send({ token });
+            res.send('SALUT BOB SUPER GRAND !');
 
 
         } catch (error) {
