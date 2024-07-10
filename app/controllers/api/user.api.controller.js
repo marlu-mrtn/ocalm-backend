@@ -1,5 +1,6 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
+import encrypt from '../../utils/encrypt.js';
 
 export default class UserApiController extends CoreController {
 
@@ -35,8 +36,9 @@ export default class UserApiController extends CoreController {
             const newUser = await this.properDatamapper.create({
                 username: username,
                 email: email,
-                password : password,
+                password : encrypt.hashed(password),
             });
+
             res.status(200).json(newUser);
 
         } catch (error) {
@@ -52,9 +54,13 @@ export default class UserApiController extends CoreController {
                 return res.status(400).send('Utilisateur non trouvé(mail incorrect)');
             }
 
-            if (userFound.password !== password){
+            const passwordOk = encrypt.compared(password, userFound.password);
+
+
+            if (!passwordOk){
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
+            
             return res.status(200).json({
                 id: userFound.id,
                 username: userFound.username,
