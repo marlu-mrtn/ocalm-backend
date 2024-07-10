@@ -50,8 +50,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Doobi",
-    "email": "Doobi@yahoo.com",
+    "username": "Dosooobi",
+    "email": "DoobiDosobi@yahoo.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }

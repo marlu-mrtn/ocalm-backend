@@ -133,3 +133,4 @@ dist
 sqitch.conf
 
 app/schemas/
+app/helpers/2etoken_jwt.services.md
