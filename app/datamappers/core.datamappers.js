@@ -1,9 +1,29 @@
+/**
+ * Classe CoreDatamapper pour les opérations CRUD génériques.
+ */
 export default class CoreDatamapper {
+    /**
+     * Nom de la table en lecture.
+     * @type {string|null}
+     */
     static readTableName = null;
+
+    /**
+     * Nom de la table en écriture.
+     * @type {string|null}
+     */
     static writeTableName = null;
+
+    /**
+     * Instance unique de la classe (singleton).
+     * @type {CoreDatamapper}
+     */
     static _instance;
 
-    // Ce constructeur (singleton) servira de base de conception pour les datamapper.
+    /**
+     * Constructeur du datamapper.
+     * @param {Object} client - Le client de base de données.
+     */
     constructor(client) {
         this.client = client;
         if(!this.constructor._instance){
@@ -12,6 +32,11 @@ export default class CoreDatamapper {
         return this.constructor._instance;
     }
 
+
+    /**
+     * Récupère toutes les lignes d'une table
+     * @returns {Promise<Array>}
+     */
     async findAll() {
         const result = await this.client.query(`
         SELECT *
@@ -19,7 +44,11 @@ export default class CoreDatamapper {
         console.log(result.rows)
         return result.rows;
     }
-
+    /**
+     * Récupère la ligne d'une table en fonction de son ID
+     * @param {number} id 
+     * @returns {Promise<Object>} Contrairement à findAll, ici on ne retourne qu'une seule ligne du tableau et c'est un objet
+     */
     async findById(id) {
         const result = await this.client.query(`
         SELECT *
@@ -29,6 +58,11 @@ export default class CoreDatamapper {
         return result.rows[0];
     }
 
+    /**
+     * Crée une nouvelle ligne sur une table
+     * @param {Object} input - Les différents paramètres demandés 
+     * @returns {Promise<Object} La nouvelle ligne créée
+     */
     async create(input) {
         const columnNames = Object.keys(input);
         // values = valeurs des colonnes
@@ -45,7 +79,12 @@ export default class CoreDatamapper {
         return result.rows;
     }
 
-
+    /**
+     * Met à jour une ligne en fonction de son ID
+     * @param {number} id - l'ID recherché 
+     * @param {Object} input - Les données à changer 
+     * @returns {Promise<Array>} La ligne mise à jour
+     */
     async update(id, input) {
         const columnNames = Object.keys(input);
         // values = valeurs des colonnes
@@ -63,6 +102,12 @@ export default class CoreDatamapper {
         return result.rows[0];
     }
 
+
+    /**
+     * Supprime une ligne en fonction de son ID
+     * @param {number} id - L'ID de la ligne à supprimer 
+     * @returns {Promise<boolean>} retourne true si des lignes ont été supprimé
+     */
     async delete(id) {
         const result = await this.client.query(`
         DELETE FROM "${this.constructor.writeTableName}"
