@@ -1,32 +1,42 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
+import { userSchema } from '../../schemas/user.get.schema.js';
 
+/**
+ * Controlleur pour la table user
+ * Répertorie les méthodes de la table user comme l'enregistrement et le l'authentification
+ */
 export default class UserApiController extends CoreController {
 
+    /**
+     * Nom de l'entité à utiliser.
+     * @type {string}
+     */
     static entityName = "user";
+
+    /**
+     * Le datamapper associé.
+     * @type {Object}
+     */
     static properDatamapper = userDatamapper;
 
-
+    /**
+     * Inscription d'un nouvel utilisateur.
+     * @param {Request} req - La route demandée
+     * @param {Response} res - reponse attendue en fonction de la route
+     * @returns {Promise<void>}
+     */
     static async signUp(req, res) {
-
         try {
-            const { username, email, password, passwordConfirm } = req.body;
+            const {error,value} = userSchema.validate(req.body);
 
-            // Vérifier que tous les champs sont remplis
-            if (!username || !email || !password || !passwordConfirm) {
-                throw new Error('Champs manquants')
+            if(error){
+                return res.status(400).json({error :error.details[0].message});
             }
-
-            // Verifier que le password correspond au passwordConfirm
-            if (password !== passwordConfirm) {
-                throw new Error('Mots de passe non correspondants')
-            }
-
-            // Vérifier que l'email correspond
+            const {username, email, password}= value;
             const userFound = await this.properDatamapper.findByEmail(email);
-
-            if (userFound) {
-                throw new Error('E-mail correspondant trouvé dans la base de données donc connectez-vous');
+            if(userFound){
+                return res.status(400).json({error: 'E-mail déjà utilisé'});
             }
 
             console.log("E-mail non trouvé dans la base de données donc continuez l'inscription");
@@ -43,7 +53,12 @@ export default class UserApiController extends CoreController {
             res.status(500).json(error.message);
         }
     }
-
+    /**
+     * Connexion d'un utilisateur.
+     * @param {Request} req - La route demandée
+     * @param {Response} res - reponse attendue en fonction de la route
+     * @returns {Promise<void>}
+     */
     static async login(req, res) {
         try {
             const { email, password } = req.body;
@@ -55,12 +70,7 @@ export default class UserApiController extends CoreController {
             if (userFound.password !== password){
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
-            return res.status(200).json({
-                id: userFound.id,
-                username: userFound.username,
-                email: userFound.email,
-            });
-
+            return res.status(200).send('Utilisateur trouvé(mail and password)');
 
 
 

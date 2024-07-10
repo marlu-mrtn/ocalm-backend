@@ -4,5 +4,13 @@ import client from '../config/pg.client.js';
 import AuthenticationDatamapper from './user.datamapper.js';
 import PlacesDatamapper from './place.datamapper.js';
 
+/**
+ * Instance du datamapper pour les utilisateurs.
+ * @type {Object}
+ */
 export const userDatamapper = new AuthenticationDatamapper(client);
+/**
+ * Instance du datamapper pour les lieux.
+ * @type {Object}
+ */
 export const placeDatamapper = new PlacesDatamapper(client);
