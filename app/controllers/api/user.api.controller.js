@@ -1,34 +1,24 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
+import { userSchema } from '../../schemas/user.get.schema.js';
 import encrypt from '../../utils/encrypt.js';
 import jwt from 'jsonwebtoken';
 
 export default class UserApiController extends CoreController {
-
     static entityName = "user";
     static properDatamapper = userDatamapper;
 
-
     static async signUp(req, res) {
-
         try {
-            const { username, email, password, passwordConfirm } = req.body;
+            const { error, value } = userSchema.validate(req.body);
 
-            // Vérifier que tous les champs sont remplis
-            if (!username || !email || !password || !passwordConfirm) {
-                throw new Error('Champs manquants')
+            if (error) {
+                return res.status(400).json({ error: error.details[0].message });
             }
-
-            // Verifier que le password correspond au passwordConfirm
-            if (password !== passwordConfirm) {
-                throw new Error('Mots de passe non correspondants')
-            }
-
-            // Vérifier que l'email correspond
+            const { username, email, password } = value;
             const userFound = await this.properDatamapper.findByEmail(email);
-
             if (userFound) {
-                throw new Error('E-mail correspondant trouvé dans la base de données donc connectez-vous');
+                return res.status(400).json({ error: 'E-mail déjà utilisé' });
             }
 
             console.log("E-mail non trouvé dans la base de données donc continuez l'inscription");
@@ -37,14 +27,14 @@ export default class UserApiController extends CoreController {
             const newUser = await this.properDatamapper.create({
                 username: username,
                 email: email,
-                password : encrypt.hashed(password),
+                password: encrypt.hashed(password),
             });
 
             res.status(200).json({
-              message: "User registered successfully",
-              user: newUser.id,
+                message: "User registered successfully",
+                user: newUser.id,
             });
-            
+
         } catch (error) {
             res.status(500).json(error.message);
         }
@@ -60,14 +50,12 @@ export default class UserApiController extends CoreController {
 
             const passwordOk = encrypt.compared(password, userFound.password);
 
-
-            if (!passwordOk){
+            if (!passwordOk) {
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
 
             const token = jwt.sign({ user: userFound }, process.env.JWT_SECRET);
             res.status(200).send({ token });
-
 
         } catch (error) {
             console.error(error);
@@ -75,3 +63,4 @@ export default class UserApiController extends CoreController {
         }
     }
 }
+
