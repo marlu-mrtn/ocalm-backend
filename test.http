@@ -39,7 +39,7 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "helloyo@yahoo.com",
+    "email": "Doobi@yahoo.com",
     "password": "#1gKiJItKHLNp2"
 }
 
@@ -50,8 +50,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Doobidooh Dooley",
-    "email": "helloyo@yahoo.com",
+    "username": "Doobi",
+    "email": "Doobi@yahoo.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }

@@ -1,6 +1,7 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 import encrypt from '../../utils/encrypt.js';
+import jwt from 'jsonwebtoken';
 
 export default class UserApiController extends CoreController {
 
@@ -39,8 +40,11 @@ export default class UserApiController extends CoreController {
                 password : encrypt.hashed(password),
             });
 
-            res.status(200).json(newUser);
-
+            res.status(200).json({
+              message: "User registered successfully",
+              userId: newUser.id
+            });
+            
         } catch (error) {
             res.status(500).json(error.message);
         }
@@ -60,14 +64,9 @@ export default class UserApiController extends CoreController {
             if (!passwordOk){
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
-            
-            return res.status(200).json({
-                id: userFound.id,
-                username: userFound.username,
-                email: userFound.email,
-            });
 
-
+            const token = jwt.sign({ userId: userFound.id }, process.env.JWT_SECRET);
+            res.send({ token });
 
 
         } catch (error) {
