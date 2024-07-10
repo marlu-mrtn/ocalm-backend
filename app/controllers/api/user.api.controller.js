@@ -65,8 +65,10 @@ export default class UserApiController extends CoreController {
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
 
-            const token = jwt.sign({ userId: userFound.id }, process.env.JWT_SECRET);
-            res.send('SALUT BOB SUPER GRAND !');
+            res.status(200).send('Utilisateur trouvé');
+
+            // const token = jwt.sign({ userId: userFound.id }, process.env.JWT_SECRET);
+            // res.send({token});
 
 
         } catch (error) {
