@@ -4,7 +4,7 @@ const options = {
   info: {
     version: '1.0.0',
     title: 'O-calm API',
-    description: 'Les meilleurs coins de verdure faciles dacces !',
+    description: 'Les meilleurs coins de verdure faciles d acces !',
   },
   baseDir: import.meta.dirname,
   filesPattern: '../../**/*.js',
