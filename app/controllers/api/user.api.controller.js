@@ -1,5 +1,6 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
+import ApiError from '../../errors/api.error.js';
 import encrypt from '../../utils/encrypt.js';
 import jwt from 'jsonwebtoken';
 
@@ -9,7 +10,7 @@ export default class UserApiController extends CoreController {
     static properDatamapper = userDatamapper;
 
 
-    static async signUp(req, res) {
+    static async signUp(req, res, next) {
 
         try {
             const { username, email, password, passwordConfirm } = req.body;
@@ -31,8 +32,6 @@ export default class UserApiController extends CoreController {
                 throw new Error('E-mail correspondant trouvé dans la base de données donc connectez-vous');
             }
 
-            console.log("E-mail non trouvé dans la base de données donc continuez l'inscription");
-
             // Créer un nouvel utilisateur
             const newUser = await this.properDatamapper.create({
                 username: username,
@@ -48,11 +47,11 @@ export default class UserApiController extends CoreController {
 
 
         } catch (error) {
-            res.status(500).json(error.message);
+            return next(new ApiError(`${this.entityName} existant`, {status: 404}));
         }
     }
 
-    static async login(req, res) {
+    static async login(req, res, next) {
         try {
             const { email, password } = req.body;
             const userFound = await this.properDatamapper.findByEmail(email);
@@ -68,13 +67,12 @@ export default class UserApiController extends CoreController {
             }
 
             const token = jwt.sign({ userFound: userFound.id }, process.env.JWT_SECRET);
-            console.log(token);
             res.status(200).send({ token });
 
 
         } catch (error) {
             console.error(error);
-            res.status(500).send('Server Error');
+            return next(new ApiError(`Serveur erreur`, {status: 404}));
         }
     }
 }

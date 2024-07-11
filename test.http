@@ -25,7 +25,12 @@ Content-Type: application/json
 
 {
     "name": "Le parc",
-    "journey": "Pour y aller prenez vos deux jambes ET VOS PIEDS et marchez",
+    "journey": [
+        "Pour y aller", 
+        "prenez vos deux jambes", 
+        "ET VOS PIEDS", 
+        "et marchez"
+        ],
     "description": "Le parc de la tête d'Or est un parc urbain de Lyon, situé dans le 6ᵉ arrondissement de Lyon, en France. Avec une superficie de 117 hectares, il est l'un des plus grands parcs urbains de France."
 }
 
@@ -50,8 +55,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Dkjsdfbdbbezefgvooobi",
-    "email": "Duscdoki@ydgbahoaefsfvo.com",
+    "username": "Gloubidoo",
+    "email": "Gloubiboo@youhou.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }
@@ -66,8 +71,8 @@ PATCH {{endpoint}}/user/6
 Content-Type: application/json
 
 {
-    "username": "Doobidooh Dooley",
-    "email": "helloyo@yahoo.com",
+    "username": "Doobidooh Doo doo",
+    "email": "HOdoobibi@yahoo.com",
     "password": "#1gKiJItKHLNp2"
 }
 

@@ -1,4 +1,6 @@
 import expressJSDocSwagger from "express-jsdoc-swagger";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const options = {
   info: {
@@ -7,7 +9,7 @@ const options = {
     description: 'Les meilleurs coins de verdure faciles d acces !',
   },
   baseDir: import.meta.dirname,
-  filesPattern: '../../**/*.js',
+  filesPattern: './../**/*.js',
   swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE || '/api-docs',
   exposeSwaggerUI: true,
   exposeApiDocs: false,
@@ -17,3 +19,4 @@ const options = {
 };
 
 export default (app) => expressJSDocSwagger(app)(options);
+

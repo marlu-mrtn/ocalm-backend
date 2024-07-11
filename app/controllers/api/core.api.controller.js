@@ -1,3 +1,5 @@
+import ApiError from '../../errors/api.error.js';
+
 /**
  * CoreController est une classe de contrôleur qui va servir de base pour toutes les opérations classiques de notre API
  */
@@ -32,11 +34,11 @@ export default class CoreController {
      * @param {Object} res - Objet de réponse.
      * @returns {Promise<Object>} Les données récupérées.
      */
-    static async findById(req, res) {
+    static async findById(req, res, next) {
         const { id } = req.params;
         const row = await this.properDatamapper.findById(id);
         if (!row) {
-            return res.status(404).json({ message: `${this.entityName} introuvable` });
+            return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
         return res.json({ data: row });
     }
@@ -47,7 +49,7 @@ export default class CoreController {
      * @param {Object} res - Objet de réponse.
      * @returns {Promise<Object>} Les données créées.
      */
-    static async create(req, res) {
+    static async create(req, res,) {
         const input = req.body;
         const row = await this.properDatamapper.create(input);
         return res.status(201).json({ data: row });
@@ -60,12 +62,12 @@ export default class CoreController {
      * @param {Object} res - Objet de réponse.
      * @returns {Promise<Object>} Les données mises à jour.
      */
-    static async update(req, res) {
+    static async update(req, res, next) {
         const { id } = req.params;
         const input = req.body;
         const row = await this.properDatamapper.update(id, input);
         if (!row) {
-            return res.status(404).json({ message: `${this.entityName} introuvable` });
+            return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
         return res.json({ data: row });
     }
@@ -80,7 +82,7 @@ export default class CoreController {
         const { id } = req.params;
         const deleted = await this.properDatamapper.delete(id);
         if (!deleted) {
-            return res.status(404).json({ message: `${this.entityName} introuvable` });
+            return next(new ApiError(404, `${this.entityName} introuvable`));
         }
         return res.status(204).json();
     }
