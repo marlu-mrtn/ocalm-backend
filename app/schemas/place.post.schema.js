@@ -12,7 +12,7 @@ import Joi from 'joi';
 export default Joi.object({
   name: Joi.string().min(2),
   gps_location: Joi.number(),
-  image: Joi.array().items(Joi.string()),
+  picture: Joi.array().items(Joi.string()),
   journey: Joi.array().items(Joi.string()),
   description: Joi.string(),
   user_id: Joi.number(),
