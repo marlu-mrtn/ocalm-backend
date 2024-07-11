@@ -68,6 +68,7 @@ export default class UserApiController extends CoreController {
             }
 
             const token = jwt.sign({ userFound: userFound.id }, process.env.JWT_SECRET);
+            console.log(token);
             res.status(200).send({ token });
 
 
