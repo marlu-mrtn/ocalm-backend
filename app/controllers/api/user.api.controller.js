@@ -1,7 +1,7 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 import ApiError from '../../errors/api.error.js';
-import encrypt from '../../utils/encrypt.js';
+import encrypt from '../../utils/encrypt.utils.js';
 import jwt from 'jsonwebtoken';
 
 export default class UserApiController extends CoreController {

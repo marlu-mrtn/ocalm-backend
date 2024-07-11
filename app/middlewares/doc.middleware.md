@@ -1,6 +1,4 @@
 import expressJSDocSwagger from "express-jsdoc-swagger";
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const options = {
   info: {
@@ -8,7 +6,7 @@ const options = {
     title: 'O-calm API',
     description: 'Les meilleurs coins de verdure faciles d acces !',
   },
-  baseDir: import.meta.dirname,
+  baseDir: './app' ,
   filesPattern: './../**/*.js',
   swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE || '/api-docs',
   exposeSwaggerUI: true,
