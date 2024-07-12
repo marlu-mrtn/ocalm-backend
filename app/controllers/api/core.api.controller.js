@@ -78,7 +78,7 @@ export default class CoreController {
      * @param {Object} res - Objet de réponse.
      * @returns {Promise<void>} 
      */
-    static async delete(req, res ) {
+    static async delete(req, res, next) {
         const { id } = req.params;
         const deleted = await this.properDatamapper.delete(id);
         if (!deleted) {
