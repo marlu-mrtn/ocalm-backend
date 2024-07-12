@@ -16,4 +16,5 @@ export default Joi.object({
   picture: Joi.array().items(Joi.string()),
   journey: Joi.array().items(Joi.string()),
   description: Joi.string(),
+  slug: Joi.string().min(2),
 });

@@ -16,4 +16,5 @@ export default Joi.object({
   journey: Joi.array().items(Joi.string()),
   description: Joi.string(),
   user_id: Joi.number(),
+  slug: Joi.string().min(2),
 });
