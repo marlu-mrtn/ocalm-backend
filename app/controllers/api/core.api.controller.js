@@ -82,7 +82,7 @@ export default class CoreController {
         const { id } = req.params;
         const deleted = await this.properDatamapper.delete(id);
         if (!deleted) {
-            return next(new ApiError(404, `${this.entityName} introuvable`));
+            return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
         return res.status(204).json();
     }
