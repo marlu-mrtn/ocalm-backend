@@ -16,7 +16,7 @@ CREATE TABLE "place" (
     "name" text NOT NULL UNIQUE,
     "gps_location" decimal,
     "picture" text[],
-    "user_id" int NOT NULL REFERENCES "user"("id"),
+    "user_id" int NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
@@ -41,16 +41,16 @@ CREATE TABLE "city" (
 
 CREATE TABLE "placeHasTag" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "place_id" int NOT NULL REFERENCES "place"("id"),
-    "tag_id" int NOT NULL REFERENCES "tag"("id"),
+    "place_id" int NOT NULL REFERENCES "place"("id") ON DELETE CASCADE,
+    "tag_id" int NOT NULL REFERENCES "tag"("id") ON DELETE CASCADE,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
 
 CREATE TABLE "cityHasPlace" (
     "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "place_id" int NOT NULL REFERENCES "place"("id"),
-    "city_id" int NOT NULL REFERENCES "city"("id"),
+    "place_id" int NOT NULL REFERENCES "place"("id") ON DELETE CASCADE,
+    "city_id" int NOT NULL REFERENCES "city"("id") ON DELETE CASCADE,
     "created_at" timestamptz NOT NULL DEFAULT now(),
     "updated_at" timestamptz
 );
