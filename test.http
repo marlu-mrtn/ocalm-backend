@@ -10,12 +10,16 @@ POST {{endpoint}}/places
 Content-Type: application/json
 
 {
-    "name": "Le parc de la tête d'Or",
+    "name": "Les parc des la tête d'Or",
     "journey": [
         "Pour y aller", 
         "prenez vos deux jambes", 
         "ET VOS PIEDS", 
         "et marchez"
+        ],
+    "picture": [
+        "ououiskahj.png",
+        "zoubizoubvo"
         ],
     "description": "Le parc de la tête d'Or est un parc urbain de Lyon, situé dans le 6ᵉ arrondissement de Lyon, en France. Avec une superficie de 117 hectares, il est l'un des plus grands parcs urbains de France.",
     "user_id": "4"
