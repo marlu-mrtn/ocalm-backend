@@ -26,7 +26,7 @@ router.route('/')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .post(validate(createSchema, 'body'),wrapper(Controller.create.bind(Controller)));
+    .post(validate(createSchema, 'body'),(Controller.create.bind(Controller)));
 
 router.route('/:id(\\d+)')
     /**
