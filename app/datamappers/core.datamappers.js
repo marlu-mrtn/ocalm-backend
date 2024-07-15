@@ -96,7 +96,7 @@ export default class CoreDatamapper {
         UPDATE "${this.constructor.writeTableName}" 
         SET ${valuesPosition} , updated_at = NOW()
         WHERE id = $1
-        RETURNING *`,
+        RETURNING *, gps_location_latitude::float, gps_location_longitude::float`,
         [id, ...values]);
 
         return result.rows[0];

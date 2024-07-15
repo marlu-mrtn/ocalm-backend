@@ -12,7 +12,8 @@ import Joi from 'joi';
  */
 export default Joi.object({
   name: Joi.string().min(2),
-  gps_location: Joi.number(),
+  gps_location_latitude: Joi.number().precision(8),
+  gps_location_longitude: Joi.number().precision(8),
   picture: Joi.array().items(Joi.string()),
   journey: Joi.array().items(Joi.string()),
   description: Joi.string(),
