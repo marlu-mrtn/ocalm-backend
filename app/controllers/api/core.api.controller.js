@@ -51,7 +51,7 @@ export default class CoreController {
      * @param {Object} res - Objet de réponse.
      * @returns {Promise<Object>} Les données créées.
      */
-    static async create(req, res,) {
+    static async create(req, res) {
         const input = req.body;
         const row = await this.properDatamapper.create(input);
 
