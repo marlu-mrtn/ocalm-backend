@@ -11,7 +11,7 @@ router.route('/')
     /**
       * GET /places
         * Route pour récupérer touters les places.
-        * @summary Affiche toutes les lpaces
+        * @summary Affiche toutes les places
         * @tags place
         * @return {[place]} 200 - success response - application/json
     */
@@ -62,5 +62,26 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 404 - Category not found - application/json
     */
     .delete(Controller.delete.bind(Controller));
+
+router.route('/:id(\\d+)/favorite')
+    /**
+      * GET /places/{id}/favorite
+        * Route pour récupérer tous les favoris d'un user
+        * @summary Affiche tous les favoris d'un user
+        * @tags favoris
+        * @return {[place]} 200 - success response - application/json
+    */
+    .get(wrapper(Controller.favorite.bind(Controller)))
+    /**
+      * PATCH /places/{id}/favorite
+        * Route pour retirer ou ajouter un favori
+        * @summary Retire ou ajoute un favori
+        * @tags favoris
+        * @param {number} id.path.required  - L'identifiant de la place.
+        * @return {place} 200 - success response - application/json
+        * @return {ApiError} 400 - Bad request response - application/json
+        * @return {ApiError} 404 - Category not found - application/json
+    */
+    .patch(validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)));
 
 export default router;

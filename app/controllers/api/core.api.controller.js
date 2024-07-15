@@ -25,6 +25,7 @@ export default class CoreController {
      */
     static async findAll(_, res) {
         const rows = await this.properDatamapper.findAll();
+        
         return res.json({ data: rows });
     }
 
@@ -40,6 +41,7 @@ export default class CoreController {
         if (!row) {
             return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
+
         return res.json({ data: row });
     }
 
@@ -52,6 +54,7 @@ export default class CoreController {
     static async create(req, res,) {
         const input = req.body;
         const row = await this.properDatamapper.create(input);
+
         return res.status(201).json({ data: row });
     }
 
@@ -69,6 +72,7 @@ export default class CoreController {
         if (!row) {
             return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
+
         return res.json({ data: row });
     }
 
@@ -84,6 +88,7 @@ export default class CoreController {
         if (!deleted) {
             return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
+
         return res.status(204).json();
     }
 }
