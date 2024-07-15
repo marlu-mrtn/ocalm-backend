@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "user","place","tag","city","placeHasTag","cityHasPlace";
+DROP TABLE IF EXISTS "user","place","tag","city","placeHasTag","cityHasPlace" CASCADE;
 
 COMMIT;
