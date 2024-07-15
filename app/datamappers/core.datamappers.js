@@ -85,7 +85,7 @@ export default class CoreDatamapper {
     }
 
         return result.rows;
-    }
+    };
 
     /**
      * Met à jour une ligne en fonction de son ID
@@ -115,7 +115,7 @@ export default class CoreDatamapper {
         });
 
         return result.rows[0];
-    }
+    };
 
 
     /**
