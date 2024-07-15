@@ -73,8 +73,16 @@ export default class CoreDatamapper {
         const result = await this.client.query(`
         INSERT INTO "${this.constructor.writeTableName}" (${[...columnNames]})
         VALUES (${valuesPosition})
-        RETURNING *, gps_location_latitude::float, gps_location_longitude::float`,
+        RETURNING *`,
         values);
+
+    if (this.constructor.writeTableName === 'place') {   
+        const rows = result.rows.map(row => {
+            row.gps_location_latitude = parseFloat(row.gps_location_latitude);
+            row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+            return row;
+        });
+    }
 
         return result.rows;
     }
@@ -96,8 +104,15 @@ export default class CoreDatamapper {
         UPDATE "${this.constructor.writeTableName}" 
         SET ${valuesPosition} , updated_at = NOW()
         WHERE id = $1
-        RETURNING *, gps_location_latitude::float, gps_location_longitude::float`,
+        RETURNING *`,
         [id, ...values]);
+
+    if (this.constructor.writeTableName === 'place') {   
+        const rows = result.rows.map(row => {
+            row.gps_location_latitude = parseFloat(row.gps_location_latitude);
+            row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+            return row;
+        });
 
         return result.rows[0];
     }

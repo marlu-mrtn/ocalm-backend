@@ -10,7 +10,7 @@ POST {{endpoint}}/places
 Content-Type: application/json
 
 {
-    "name": "kjdsdcshsffvdfdcvdzcvdfvcg",
+    "name": "gruic",
     "journey": [
         "Pour y aller", 
         "prenez vos deux jambes", 
@@ -68,8 +68,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Gloubidoo",
-    "email": "Gloubiboo@youhou.com",
+    "username": "Glod",
+    "email": "Bodo@youhou.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }
