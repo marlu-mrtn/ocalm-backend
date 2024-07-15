@@ -76,13 +76,13 @@ export default class CoreDatamapper {
         RETURNING *`,
         values);
 
-    if (this.constructor.writeTableName === 'place') {   
-        const rows = result.rows.map(row => {
-            row.gps_location_latitude = parseFloat(row.gps_location_latitude);
-            row.gps_location_longitude = parseFloat(row.gps_location_longitude);
-            return row;
-        });
-    }
+        if (this.constructor.writeTableName === 'place') {   
+            const rows = result.rows.map(row => {
+                row.gps_location_latitude = parseFloat(row.gps_location_latitude);
+                row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+                return row;
+            });
+        };
 
         return result.rows;
     };
@@ -107,12 +107,13 @@ export default class CoreDatamapper {
         RETURNING *`,
         [id, ...values]);
 
-    if (this.constructor.writeTableName === 'place') {   
-        const rows = result.rows.map(row => {
-            row.gps_location_latitude = parseFloat(row.gps_location_latitude);
-            row.gps_location_longitude = parseFloat(row.gps_location_longitude);
-            return row;
-        });
+        if (this.constructor.writeTableName === 'place') {   
+            const rows = result.rows.map(row => {
+                row.gps_location_latitude = parseFloat(row.gps_location_latitude);
+                row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+                return row;
+            });
+        };
 
         return result.rows[0];
     };
