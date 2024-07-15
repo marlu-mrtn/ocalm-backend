@@ -6,4 +6,5 @@
 03_journeyAndDescriptionColumns 2024-07-01T11:06:56Z camille gripon <gripon@Bidule> # Adding journey and description columns
 04_slugColumn 2024-07-02T08:33:04Z camille gripon <gripon@Bidule> # Adding slug column
 05_passwordStrongerRegex 2024-07-06T18:42:17Z camille gripon <gripon@Bidule> # adding stronger regex at password constraint
-update_gps_location 2024-07-13T12:12:48Z camille gripon <gripo@Bidule> # change gps_location to an object with longitude and latitude
+06_update_gps_location 2024-07-15T11:21:54Z camille gripon <gripon@Bidule> # change gps_location to an object with longitude and latitude
+07_favoriteTable 2024-07-15T11:23:02Z camille gripon <gripon@Bidule> # adding favorite table
