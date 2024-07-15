@@ -68,8 +68,8 @@ POST {{endpoint}}/register
 Content-Type: application/json
 
 {
-    "username": "Glod",
-    "email": "Bodo@youhou.com",
+    "username": "Gloid",
+    "email": "Boudou@youhou.com",
     "password": "#1gKiJItKHLNp2",
     "passwordConfirm": "#1gKiJItKHLNp2"
 }
@@ -78,6 +78,9 @@ Content-Type: application/json
 
 ### /user GET ONE USER ------------- OK
 GET {{endpoint}}/user/2
+
+### /user/id/favorite GET FAVORITES ------------- OK
+GET {{endpoint}}/user/3/favorite
 
 ### /user UPDATE USER ------------- OK
 PATCH {{endpoint}}/user/6
@@ -92,3 +95,19 @@ Content-Type: application/json
 ### /user DELETE USER ------------- OK
 DELETE {{endpoint}}/user/1
 
+
+############################################# FAVORITE
+
+### /places/id/favorite GET FAVORITES ------------- OK
+GET {{endpoint}}/places/favorite/3
+
+### /places/id/favorite ADD FAVORITE ------------- OK
+POST {{endpoint}}/places/favorite/3
+Content-Type: application/json
+
+{
+    "place_id": 11
+}
+
+### /places/id/favorite DELETE FAVORITE ------------- OK
+DELETE {{endpoint}}/places/favorite/3/9

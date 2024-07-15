@@ -1,6 +1,5 @@
 import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
-import ApiError from '../../errors/api.error.js';
 import encrypt from '../../utils/encrypt.utils.js';
 import jwt from 'jsonwebtoken';
 
@@ -10,9 +9,8 @@ export default class UserApiController extends CoreController {
     static properDatamapper = userDatamapper;
 
 
-    static async signUp(req, res, next) {
+    static async signUp(req, res) {
 
-        try {
             const { username, email, password, passwordConfirm } = req.body;
 
             // Vérifier que tous les champs sont remplis
@@ -45,14 +43,10 @@ export default class UserApiController extends CoreController {
               newUser: newUser[0].id,
             });
 
+    };
 
-        } catch (error) {
-            return next(new ApiError(`${this.entityName} existant`, {status: 404}));
-        }
-    }
+    static async login(req, res) {
 
-    static async login(req, res, next) {
-        try {
             const { email, password } = req.body;
             const userFound = await this.properDatamapper.findByEmail(email);
             if (!userFound) {
@@ -68,11 +62,6 @@ export default class UserApiController extends CoreController {
 
             const token = jwt.sign({ userFound: userFound.id }, process.env.JWT_SECRET);
             res.status(200).send({ token });
+    };
 
-
-        } catch (error) {
-            console.error(error);
-            return next(new ApiError(`Serveur erreur`, {status: 404}));
-        }
-    }
-}
+};
