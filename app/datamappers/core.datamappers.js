@@ -76,6 +76,13 @@ export default class CoreDatamapper {
         RETURNING *`,
         values);
 
+
+    const rows = result.rows.map(row => {
+        row.gps_location_latitude = parseFloat(row.gps_location_latitude);
+        row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+        return row;
+    });
+
         return result.rows;
     }
 
