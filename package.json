@@ -9,7 +9,8 @@
     "db:import": "node data/faker.js",
     "db:reset": "sqitch revert -y && npm run db:create && npm run db:import",
     "db:data": "node data/faker.js",
-    "start": "node index.js",
+    "db:save": "node backup.js",
+    "db:restore": "pg_restore -h process.env.DB_HOST -p process.env.DB_PORT -U process.env.DB_USER -d process.env.DB_NAME -v backupfile.dump ",
     "dev": "node --watch server.js",
     "test": "cross-env NODE_ENV=test NODE_OPTIONS='--experimental-vm-modules' jest"
   },
