@@ -89,6 +89,6 @@ export default class CoreController {
             return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
 
-        return res.status(204).json();
+         return res.status(204).send();
     }
 }
