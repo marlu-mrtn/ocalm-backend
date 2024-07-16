@@ -26,7 +26,7 @@ export default {
                 {
                     exp: refreshTokenExp, 
                     data: {
-                        id: user.id,
+                        user_id: user.id,
                         username: user.username
                     }
                 }, process.env.JWT_SECRET
