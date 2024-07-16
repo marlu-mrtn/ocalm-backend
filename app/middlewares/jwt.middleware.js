@@ -7,7 +7,7 @@ export default {
         this.cache = cache;
     },
     
-    async generateToken(data, generateRefresh = false, user = null) {
+    async generateToken(data, generateRefresh = false, user) {
         // la durée est en secondes
         const mainTokenTTL = 60 * 15;
         const mainTokenExp = Math.round(Date.now() / 1000 + mainTokenTTL);
