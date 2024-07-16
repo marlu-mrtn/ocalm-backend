@@ -5,6 +5,8 @@ import validate from '../../middlewares/validation.middleware.js';
 import updateSchema from '../../schemas/place.patch.schema.js';
 import createFavSchema from '../../schemas/userHasFavoritesPlaces.post.schema.js';
 import createSchema from '../../schemas/place.post.schema.js';
+import isAuth from '../../middlewares/isAuth.middleware.js';
+
 
 const router = express.Router();
 
@@ -27,7 +29,7 @@ router.route('/')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .post(validate(createSchema, 'body'),(Controller.create.bind(Controller)));
+    .post(isAuth, validate(createSchema, 'body'),(Controller.create.bind(Controller)));
 
 router.route('/:id(\\d+)')
     /**
@@ -40,7 +42,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .get(wrapper(Controller.findById.bind(Controller)))
+    .get(isAuth, wrapper(Controller.findById.bind(Controller)))
     /**
       * PATCH /places/{id}
         * Route pour les modifications sur une place spécifique.
@@ -51,7 +53,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .patch(validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)))
+    .patch(isAuth, validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)))
     /**
       * DELETE /places/{id}
         * Route pour les modifications sur une place spécifique.
@@ -62,7 +64,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .delete(Controller.delete.bind(Controller));
+    .delete(isAuth, Controller.delete.bind(Controller));
 
 router.route('/favorite/:id(\\d+)')
     /**
@@ -72,7 +74,7 @@ router.route('/favorite/:id(\\d+)')
         * @tags favoris
         * @return {[place]} 200 - success response - application/json
     */
-    .get(wrapper(Controller.getAllFavorites.bind(Controller)))
+    .get(isAuth,wrapper(Controller.getAllFavorites.bind(Controller)))
     /**
        * POST /places/favorite/{id}
          * Route pour créer un favori.
@@ -82,7 +84,7 @@ router.route('/favorite/:id(\\d+)')
          * @return {ApiError} 400 - Bad request response - application/json
          * @return {ApiError} 404 - Category not found - application/json
         */
-    .post(validate(createFavSchema, 'body'),wrapper(Controller.createFav.bind(Controller)))
+    .post(isAuth, validate(createFavSchema, 'body'),wrapper(Controller.createFav.bind(Controller)))
 
 router.route('/favorite/:id(\\d+)/:fav_id(\\d+)')
     /**
@@ -96,6 +98,6 @@ router.route('/favorite/:id(\\d+)/:fav_id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .delete(Controller.deleteFav.bind(Controller));
+    .delete(isAuth, wrapper(Controller.deleteFav.bind(Controller)));
 
 export default router;
