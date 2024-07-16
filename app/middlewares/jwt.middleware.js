@@ -7,7 +7,7 @@ export default {
         this.cache = cache;
     },
     
-    async generateToken(data, generateRefresh = false){
+    async generateToken(data, generateRefresh = false, user = null) {
         // la durée est en secondes
         const mainTokenTTL = 60 * 15;
         const mainTokenExp = Math.round(Date.now() / 1000 + mainTokenTTL);
@@ -96,7 +96,7 @@ export default {
     
         try {
             const tokenInfos = verifyToken(token);
-            req.user = tokenInfos.userFound; // Stockez les informations de l'utilisateur dans la requête si nécessaire
+            // req.user = tokenInfos.userFound; // Stockez les informations de l'utilisateur dans la requête si nécessaire
             next(); // Passez au middleware suivant ou à la route si le token est valide
         } catch (err) {
             next(err); // Passe une ApiError en cas d'erreur de vérification du token
