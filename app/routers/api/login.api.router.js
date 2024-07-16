@@ -8,15 +8,16 @@ const router = express.Router();
 
 router.route('/')
     /**
-      * POST /login
-        * Route pour se connecter.
-        * @summary Connecte un utilisateur.
-        * @tags login
-        * @param {number} id.path.required  - L'identifiant de l'utilisateur.
-        * @return {user} 200 - success response - application/json
-        * @return {ApiError} 400 - Bad request response - application/json
-        * @return {ApiError} 404 - Category not found - application/json
-    */
-    .post(validate(createSchema, 'body'),wrapper(controller.login.bind(controller)));
+     * POST /login
+     * @summary Connecte un utilisateur.
+     * @tags login
+     * @param {object} request.body.required - Les informations de connexion de l'utilisateur - application/json
+     * @return {User} 200 - success response - application/json
+     * @return {ApiError} 400 - Bad request response - application/json
+     * @return {ApiError} 404 - User not found - application/json
+     */
+    .post(validate(createSchema, 'body'), wrapper(controller.login.bind(controller)));
 
 export default router;
+
+

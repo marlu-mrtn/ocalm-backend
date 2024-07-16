@@ -14,7 +14,7 @@ router.route('/')
         * Route pour récupérer touters les places.
         * @summary Affiche toutes les places
         * @tags place
-        * @return {[place]} 200 - success response - application/json
+        * @return {[Place]} 200 - success response - application/json
     */
     .get(wrapper(Controller.findAll.bind(Controller)))
     /**
@@ -23,7 +23,7 @@ router.route('/')
         * @summary Créé une nouvelle place
         * @tags place
         * @param {Input} id.path.required  - L'identifiant de la place.
-        * @return {place} 200 - success response - application/json
+        * @return {Place} 200 - success response - application/json
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
@@ -36,7 +36,7 @@ router.route('/:id(\\d+)')
         * @summary Affiche une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
-        * @return {user} 200 - success response - application/json
+        * @return {Place} 200 - success response - application/json
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
@@ -47,7 +47,7 @@ router.route('/:id(\\d+)')
         * @summary Modifie une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
-        * @return {place} 200 - success response - application/json
+        * @return {Place} 200 - success response - application/json
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
@@ -58,7 +58,7 @@ router.route('/:id(\\d+)')
         * @summary Supprime une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
-        * @return {place} 200 - success response - application/json
+        * @return {Place} 200 - success response - application/json
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
@@ -70,7 +70,7 @@ router.route('/favorite/:id(\\d+)')
         * Route pour récupérer tous les favoris d'un user
         * @summary Affiche tous les favoris d'un user
         * @tags favoris
-        * @return {[place]} 200 - success response - application/json
+        * @return {[Place]} 200 - success response - application/json
     */
     .get(wrapper(Controller.getAllFavorites.bind(Controller)))
     /**
@@ -78,7 +78,7 @@ router.route('/favorite/:id(\\d+)')
          * Route pour créer un favori.
          * @summary Créé un favori
          * @tags favoris
-         * @return {place} 200 - success response - application/json
+         * @return {Place} 200 - success response - application/json
          * @return {ApiError} 400 - Bad request response - application/json
          * @return {ApiError} 404 - Category not found - application/json
         */
@@ -92,7 +92,7 @@ router.route('/favorite/:id(\\d+)/:fav_id(\\d+)')
         * @tags favoris
         * @param {number} id.path.required  - L'identifiant du user.
         * @param {number} fav_id.path.required  - L'identifiant du favori
-        * @return {place} 200 - success response - application/json
+        * @return {Place} 200 - success response - application/json
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
