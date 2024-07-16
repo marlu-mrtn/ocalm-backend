@@ -101,7 +101,6 @@ export default {
         } catch (err) {
             next(err); // Passe une ApiError en cas d'erreur de vérification du token
         }
-    };
+    }
     
-
 };
