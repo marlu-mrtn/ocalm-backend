@@ -3,7 +3,7 @@ import Controller from '../../controllers/api/user.api.controller.js';
 import wrapper from '../../middlewares/wrapper.middlewares.js';
 import validate from '../../middlewares/validation.middleware.js';
 import updateSchema from '../../schemas/register.post.schema.js';
-import isAuth from '../../middlewares/jwt.middleware.js';
+import isAuth from '../../helpers/jwt.helpers.js';
 
 
 const router = express.Router();

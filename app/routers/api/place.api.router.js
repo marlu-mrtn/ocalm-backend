@@ -5,7 +5,7 @@ import validate from '../../middlewares/validation.middleware.js';
 import updateSchema from '../../schemas/place.patch.schema.js';
 import createFavSchema from '../../schemas/userHasFavoritesPlaces.post.schema.js';
 import createSchema from '../../schemas/place.post.schema.js';
-import isAuth from '../../middlewares/jwt.middleware.js';
+import isAuth from '../../helpers/jwt.helpers.js';
 
 
 const router = express.Router();
