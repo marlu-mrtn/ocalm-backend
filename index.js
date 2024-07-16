@@ -7,7 +7,6 @@ import app from './app/index.app.js';
 const PORT = process.env.PORT || 4000;
 const DBHOST = process.env.DB_HOST || 'localhost';
 
-
 const httpServer = createServer(app);
 
 httpServer.listen(PORT, () => {

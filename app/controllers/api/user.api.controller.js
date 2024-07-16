@@ -2,7 +2,7 @@ import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 import encrypt from '../../utils/encrypt.utils.js';
 // import jwt from 'jsonwebtoken';
-import authMiddleware from '../../middlewares/auth.middlewares.js';
+import authMiddleware from '../../middlewares/jwt.middleware.js';
 
 export default class UserApiController extends CoreController {
 
