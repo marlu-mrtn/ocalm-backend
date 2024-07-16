@@ -42,11 +42,13 @@ export default class PlaceDatamapper extends CoreDatamapper {
         const result = await this.client.query(`
         INSERT INTO "userHasFavoritesPlaces" (place_id, user_id)
         VALUES ($1, $2)
-        RETURNING place_id, id, (
-            SELECT "name" 
-            FROM "place" 
-            WHERE id = $1
-        ) AS place
+        RETURNING 
+            "place_id",
+            "id" AS "fav_id", (
+                SELECT "name" 
+                FROM "place" 
+                WHERE id = $1
+            ) AS "place"
         `, [place_id, user_id]);
 
         return result.rows[0];
@@ -58,11 +60,12 @@ export default class PlaceDatamapper extends CoreDatamapper {
         WHERE user_id = $1
         AND id = $2
         RETURNING 
-            place_id, id, (
+            "place_id", 
+            "id" AS "fav_id", (
             SELECT "name" 
             FROM "place" 
-            WHERE id = "userHasFavoritesPlaces"."place_id"
-            ) AS place
+            WHERE "id" = "userHasFavoritesPlaces"."place_id"
+            ) AS "place"
         `, [id, fav_id]);
 
         return result.rows[0];

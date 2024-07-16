@@ -10,7 +10,7 @@ POST {{endpoint}}/places
 Content-Type: application/json
 
 {
-    "name": "gruic",
+    "name": "gruicou",
     "journey": [
         "Pour y aller", 
         "prenez vos deux jambes", 
@@ -35,7 +35,7 @@ PATCH {{endpoint}}/places/8
 Content-Type: application/json
 
 {
-    "name": "Le parc",
+    "name": "Le parc gruicou",
     "journey": [
         "Pour y aller", 
         "prenez vos deux jambes", 
@@ -57,7 +57,7 @@ POST {{endpoint}}/login
 Content-Type: application/json
 
 {
-    "email": "Doobi@yahoo.com",
+    "email": "Boudou@youhou.com",
     "password": "#1gKiJItKHLNp2"
 }
 
