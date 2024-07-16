@@ -13,5 +13,3 @@ httpServer.listen(PORT, () => {
     logger.info(`Server is running on http://${DBHOST}:${PORT}`)
 });
 
-
-

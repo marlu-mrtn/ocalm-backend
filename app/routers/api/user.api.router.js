@@ -3,7 +3,7 @@ import Controller from '../../controllers/api/user.api.controller.js';
 import wrapper from '../../middlewares/wrapper.middlewares.js';
 import validate from '../../middlewares/validation.middleware.js';
 import updateSchema from '../../schemas/register.post.schema.js';
-import isAuth from '../../middlewares/isAuth.middleware.js';
+import isAuth from '../../middlewares/jwt.middleware.js';
 
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.route('/')
         * @tags user
         * @return {[user]} 200 - success response - application/json
     */
-    .get(isAuth, wrapper(Controller.findAll.bind(Controller)));
+    .get(isAuth.verifyToken, wrapper(Controller.findAll.bind(Controller)));
 
 router.route('/:id(\\d+)')
     /**
@@ -29,7 +29,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .get(isAuth, wrapper(Controller.findById.bind(Controller)))
+    .get(isAuth.verifyToken, wrapper(Controller.findById.bind(Controller)))
     /**
       * PATCH /user/{id}
         * Route pour les modifications sur un utilisateur spécifique.
@@ -40,7 +40,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .patch(isAuth, validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)))
+    .patch(isAuth.verifyToken, validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)))
     /**
       * DELETE /user/{id}
         * Route pour les modifications sur un utilisateur spécifique.
@@ -51,7 +51,7 @@ router.route('/:id(\\d+)')
         * @return {ApiError} 400 - Bad request response - application/json
         * @return {ApiError} 404 - Category not found - application/json
     */
-    .delete(isAuth, wrapper(Controller.delete.bind(Controller)));
+    .delete(isAuth.verifyToken, wrapper(Controller.delete.bind(Controller)));
 
 export default router;
 
