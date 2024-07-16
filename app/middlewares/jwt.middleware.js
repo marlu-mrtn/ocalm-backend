@@ -7,7 +7,7 @@ export default {
         this.cache = cache;
     },
     
-    async generateToken(user, generateRefresh = false){
+    async generateToken(data, generateRefresh = false){
         // la durée est en secondes
         const mainTokenTTL = 60 * 15;
         const mainTokenExp = Math.round(Date.now() / 1000 + mainTokenTTL);
@@ -17,7 +17,7 @@ export default {
         const mainToken = jwt.sign(
             { 
                 exp: mainTokenExp,
-                user
+                data
             }, process.env.JWT_SECRET
         );
         
@@ -25,7 +25,7 @@ export default {
             const refreshToken = jwt.sign(
                 {
                     exp: refreshTokenExp, 
-                    user: {
+                    data: {
                         id: user.id,
                         username: user.username
                     }
@@ -33,7 +33,7 @@ export default {
             );
 
             await this.cache.set(
-                `refresh:${user.id}`,
+                `refresh:${data.id}`,
                 refreshToken,
                 {
                     ttl: refreshTokenTTL
@@ -63,12 +63,12 @@ export default {
 
     async verifyRefreshToken(refreshToken){
         try {
-            const user = jwt.verify(refreshToken, process.env.JWT_SECRET);
-            const cacheRefreshToken = await this.cache.get(`refresh:${user.id}`);
+            const data = jwt.verify(refreshToken, process.env.JWT_SECRET);
+            const cacheRefreshToken = await this.cache.get(`refresh:${data.id}`);
             if (!cacheRefreshToken || cacheRefreshToken !== refreshToken) {
                 throw new ApiError('Refresh token absent ou non correspondant');
             }
-            return user;
+            return data;
         } catch(err) {
             throw new ApiError('Authentication échouée', {
                 extensions: {
@@ -81,36 +81,27 @@ export default {
         };
       },
 
-      verifyToken(bearer, fingerprint){
-        if(!bearer){
-            return null;
+      verifyToken(res, req, next) {
+        const bearerHeader = req.headers['authorization'];
+
+        if (!bearerHeader) {
+            return next(new ApiError('Token absent', { status: 401 }));
         }
-
-        const [, token] = bearer.split(' ');
-
-        if(!token){
-            return null;
+    
+        const [, token] = bearerHeader.split(' ');
+    
+        if (!token) {
+            return next(new ApiError('Token absent', { status: 401 }));
         }
-
+    
         try {
-
-            const tokenInfos = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-
-            if(fingerprint.ip !== tokenInfos.data.fingerprint.ip || fingerprint.userAgent !== tokenInfos.data.fingerprint.userAgent){
-                throw new Error('');
-            }
-
-            return tokenInfos;
-        } catch(err) {
-            throw new ApiError('Authentication échouée', {
-                extensions: {
-                    code: 'AUTHENTICATION_FAILED',
-                    http: {
-                        status: 400
-                    }
-                }
-            });
+            const tokenInfos = verifyToken(token);
+            req.user = tokenInfos.userFound; // Stockez les informations de l'utilisateur dans la requête si nécessaire
+            next(); // Passez au middleware suivant ou à la route si le token est valide
+        } catch (err) {
+            next(err); // Passe une ApiError en cas d'erreur de vérification du token
         }
-    }
+    };
+    
 
 };
