@@ -24,7 +24,8 @@ export default class PlaceDatamapper extends CoreDatamapper {
         const result = await this.client.query(`
         SELECT DISTINCT
 	    "${this.constructor.readTableName}"."id" AS ${this.constructor.readTableName}_id,
-	    "${this.constructor.readTableName}"."name" AS ${this.constructor.readTableName}
+	    "${this.constructor.readTableName}"."name" AS ${this.constructor.readTableName},
+        "userHasFavoritesPlaces"."id" AS fav_id 
         FROM "${this.constructor.readTableName}"
         JOIN "userHasFavoritesPlaces"
         	ON "userHasFavoritesPlaces"."place_id" = "${this.constructor.readTableName}"."id"
@@ -41,7 +42,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
         const result = await this.client.query(`
         INSERT INTO "userHasFavoritesPlaces" (place_id, user_id)
         VALUES ($1, $2)
-        RETURNING place_id, (
+        RETURNING place_id, id, (
             SELECT "name" 
             FROM "place" 
             WHERE id = $1
@@ -57,7 +58,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
         WHERE user_id = $1
         AND id = $2
         RETURNING 
-            place_id, (
+            place_id, id, (
             SELECT "name" 
             FROM "place" 
             WHERE id = "userHasFavoritesPlaces"."place_id"

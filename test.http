@@ -110,4 +110,4 @@ Content-Type: application/json
 }
 
 ### /places/id/favorite DELETE FAVORITE ------------- OK
-DELETE {{endpoint}}/places/favorite/3/27
+DELETE {{endpoint}}/places/favorite/3/24
