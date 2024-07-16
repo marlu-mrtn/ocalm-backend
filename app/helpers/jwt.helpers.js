@@ -8,7 +8,21 @@ export default {
         });
     },
 
-    verifyToken: (token) => {
-        return jwt.verify(token, process.env.JWT_SECRET);
+     verifyToken: (bearer) => {
+        if (!bearer) {
+            throw new ApiError(401, 'Token absent');
+        }
+
+        const [, token] = bearer.split(' ');
+
+        if (!token) {
+            throw new ApiError(401, 'Token invalide');
+        }
+    
+        try {
+            return jwt.verify(token, process.env.JWT_SECRET);
+        } catch (error) {
+            throw new ApiError(401, 'Token invalide');
+        }
     },
 };
