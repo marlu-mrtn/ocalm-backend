@@ -33,7 +33,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
         WHERE "userHasFavoritesPlaces"."user_id" = $1
         `, [user_id]);
 
-        return result.rows;
+        return result.rows[0];
 
     }
 
@@ -41,7 +41,11 @@ export default class PlaceDatamapper extends CoreDatamapper {
         const result = await this.client.query(`
         INSERT INTO "userHasFavoritesPlaces" (place_id, user_id)
         VALUES ($1, $2)
-        RETURNING id
+        RETURNING place_id, (
+            SELECT "name" 
+            FROM "place" 
+            WHERE id = $1
+        ) AS place
         `, [place_id, user_id]);
 
         return result.rows[0];
@@ -51,9 +55,15 @@ export default class PlaceDatamapper extends CoreDatamapper {
         const result = await this.client.query(`
         DELETE FROM "userHasFavoritesPlaces"
         WHERE user_id = $1
-        AND id = $2`,
-        [id, fav_id]);
+        AND id = $2
+        RETURNING 
+            place_id, (
+            SELECT "name" 
+            FROM "place" 
+            WHERE id = "userHasFavoritesPlaces"."place_id"
+            ) AS place
+        `, [id, fav_id]);
 
-        return !!result.rowCount;
+        return result.rows[0];
     }
 }

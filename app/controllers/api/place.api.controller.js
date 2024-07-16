@@ -34,9 +34,7 @@ export default class PlacesController extends CoreController {
 
     static async createFav(req, res) {
         const { id } = req.params;
-        console.log(`hello user_id : ${id}`);
         const place_id = req.body.place_id;
-        console.log(`hello place_id : ${place_id}`);
 
         const row = await this.properDatamapper.createFav(place_id, id);
 
@@ -46,12 +44,12 @@ export default class PlacesController extends CoreController {
     static async deleteFav(req, res, next) {
         const { id } = req.params;
         const { fav_id } = req.params;
-        const deleted = await this.properDatamapper.deleteFav(id, fav_id);
-        if (!deleted) {
+        const row = await this.properDatamapper.deleteFav(id, fav_id);
+        if (!row) {
             return next(new ApiError(`Favoris introuvable`, {status: 404}));
         }
 
-        return res.status(204).json();
+        return res.status(200).json({ data: row });
 
     }
 
