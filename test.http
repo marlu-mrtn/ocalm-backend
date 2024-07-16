@@ -106,7 +106,7 @@ POST {{endpoint}}/places/favorite/3
 Content-Type: application/json
 
 {
-    "place_id": 3
+    "place_id": 5
 }
 
 ### /places/id/favorite DELETE FAVORITE ------------- OK

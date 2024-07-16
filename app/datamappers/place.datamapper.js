@@ -33,7 +33,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
         WHERE "userHasFavoritesPlaces"."user_id" = $1
         `, [user_id]);
 
-        return result.rows[0];
+        return result.rows;
 
     }
 

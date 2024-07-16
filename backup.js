@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { exec } from 'child_process';
 
 const hostname = process.env.DB_HOST;
@@ -6,7 +8,7 @@ const username = process.env.DB_USER;
 const dbname = process.env.DB_NAME;
 const backupFile = 'backupfile.dump';
 
-const command = `pg_dump -h ${hostname} -p ${port} -U ${username} -W -F c -b -v -f ${backupFile} ${dbname}`;
+const command = `pg_dump -h ${hostname} -p ${port} -U ${username} -F c -b -v -f ${backupFile} ${dbname}`;
 
 exec(command, (error, stdout, stderr) => {
     if (error) {
