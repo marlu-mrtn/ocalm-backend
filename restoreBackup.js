@@ -6,9 +6,15 @@ const hostname = process.env.DB_HOST;
 const port = process.env.DB_PORT
 const username = process.env.DB_USER;
 const dbname = process.env.DB_NAME;
+
 const backupFile = 'backupfile.dump';
 
-const command = `pg_dump -h ${hostname} -p ${port} -U ${username} -W -F c -b -v -f ${backupFile} ${dbname}`;
+const command = `
+        psql -h ${hostname} -p ${port} -U ${username} -d ${dbname} -c "ALTER TABLE place DISABLE TRIGGER ALL;"
+        pg_restore -h ${hostname} -p ${port} -U ${username} -d ${dbname} -v ${backupFile}
+        psql -h ${hostname} -p ${port} -U ${username} -d ${dbname} -c "ALTER TABLE place ENABLE TRIGGER ALL;"
+`;
+
 
 exec(command, (error, stdout, stderr) => {
     if (error) {
@@ -19,5 +25,7 @@ exec(command, (error, stdout, stderr) => {
         console.error(`Erreur : ${stderr}`);
         return;
     }
-    console.log(`Sauvegarde réussie : ${stdout}`);
+    console.log(`Restoration réussie : ${stdout}`);
 });
+
+

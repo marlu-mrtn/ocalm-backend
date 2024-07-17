@@ -2,6 +2,7 @@ import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 import encrypt from '../../utils/encrypt.utils.js';
 import jwt from 'jsonwebtoken';
+// import authMiddleware from '../../middlewares/jwt.middleware.js';
 
 export default class UserApiController extends CoreController {
 
@@ -59,7 +60,7 @@ export default class UserApiController extends CoreController {
             if (!passwordOk){
                 return res.status(400).send('Utilisateur non trouvé(password incorrect)');
             }
-
+            // const token = await authMiddleware.generateToken(userFound, true); 
             const token = jwt.sign({ userFound: userFound.id }, process.env.JWT_SECRET);
             res.status(200).send({ token });
     };
