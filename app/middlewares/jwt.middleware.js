@@ -83,7 +83,7 @@ export default {
 
       verifyToken(res, req, next) {
         const bearerHeader = req.headers['authorization'];
-
+	console.log("je suis dans verify token, le bearerHeader",bearerHeader);
         if (!bearerHeader) {
             return next(new ApiError('Token absent', { status: 401 }));
         }

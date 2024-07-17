@@ -41,7 +41,7 @@ export default class CoreDatamapper {
         const result = await this.client.query(`
         SELECT *
         FROM "${this.constructor.readTableName}"`);
-
+	
         return result.rows;
     }
     /**

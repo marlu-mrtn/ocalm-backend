@@ -8,9 +8,9 @@ export default {
         });
     },
 
-    verifyToken: (authHeader) => {
-	console.log("coucou", authHeader.headers.authorization);
-	const token = authHeader.headers.authorization;
+    verifyToken: (req,res,next) => {
+	console.log("coucou", req.headers.authorization);
+	const token = req.headers.authorization;
 	console.log("ICI LE TOKEN ICIIIIIIIIIIIII", token);
         if (!token) {
             throw new ApiError(401, 'Token absent');
@@ -26,7 +26,10 @@ export default {
 	console.log(token1);
 
         try {
-            return jwt.verify(token1, process.env.JWT_SECRET);
+            const response= jwt.verify(token1, process.env.JWT_SECRET);
+		console.log("response de mon jwt.verify",response.userFound);
+		req.userId=response.userFound;
+		next();
         } catch (error) {
             throw new ApiError(401, 'Token invalide');
         }
