@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import ApiError from './api.error.js';
+
 
 export default {
     generateToken: (user) => {
