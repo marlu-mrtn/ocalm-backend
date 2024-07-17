@@ -8,6 +8,16 @@ import createSchema from '../../schemas/place.post.schema.js';
 
 const router = express.Router();
 
+
+/**
+ * @typedef {object} Place
+ * @property {integer} id.required - ID de la place
+ * @property {string} name - Nom de la place
+ * @property {string} description - Description de la place
+ * @property {array<string>} journey - Itinéraire de la place
+ */
+
+
 router.route('/')
     /**
       * GET /places
