@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import ApiError from '../errors/api.error.js';
 
 
 export default {
