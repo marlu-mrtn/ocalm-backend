@@ -9,7 +9,7 @@ export default {
         });
     },
 
-    verifyToken: (req,res,next) => {
+    verifyToken: (req, _, next) => {
         const token = req.headers.authorization;
         if (!token) {
             throw new ApiError(401, 'Token absent');
@@ -25,10 +25,11 @@ export default {
         console.log(token1);
 
         try {
-            const response= jwt.verify(token1, process.env.JWT_SECRET);
-            console.log("response de mon jwt.verify",response.userFound);
-            req.userId=response.userFound;
+            const response = jwt.verify(token1, process.env.JWT_SECRET);
+            req.userId = response.userFound;
+
             next();
+
         } catch {
             throw new ApiError(401, 'Token invalide');
         }

@@ -61,8 +61,8 @@ describe('UserApiController methods', () => {
                     createdUserId = mockRes.json.mock.calls[0][0].newUser;
                 }
                 console.log('Created User ID:', createdUserId);
-            } catch (error) {
-                console.error('SignUp error:', error.message);
+            } catch (err) {
+                console.error('SignUp error:', err.message);
             }
         });
 
@@ -95,8 +95,8 @@ describe('UserApiController methods', () => {
                 console.log('Deleting User ID:', createdUserId);
                 try {
                     await UserApiController.delete(mockReq, mockRes, mockNext);
-                } catch (error) {
-                    console.error('Delete error:', error.message);
+                } catch (err) {
+                    console.error('Delete error:', err.message);
                 }
             }
         });

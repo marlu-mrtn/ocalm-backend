@@ -11,9 +11,9 @@ const backupFile = 'backupfile.dump';
 
 const command = `pg_dump -h ${hostname} -p ${port} -U ${username} -W -F c -b -v -f ${backupFile} ${dbname}`;
 
-exec(command, (error, stdout, stderr) => {
-    if (error) {
-        logger.error(`Erreur lors de la sauvegarde : ${error.message}`);
+exec(command, (err, stdout, stderr) => {
+    if (err) {
+        logger.error(`Erreur lors de la sauvegarde : ${err.message}`);
         return;
     }
     if (stderr) {

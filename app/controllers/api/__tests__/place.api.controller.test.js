@@ -57,8 +57,8 @@ describe('PlaceApiController methods', () => {
                 if (mockRes.json.mock.calls.length > 0) {
                     createdPlaceId = mockRes.json.mock.calls[0][0].data.id;
                 }
-            } catch (error) {
-                console.error('Create error:', error.message);
+            } catch (err) {
+                console.error('Create err:', err.message);
             }
         });
 

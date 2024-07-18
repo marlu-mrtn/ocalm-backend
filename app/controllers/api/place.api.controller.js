@@ -45,6 +45,7 @@ export default class PlacesController extends CoreController {
         const { id } = req.params;
         const { fav_id } = req.params;
         const row = await this.properDatamapper.deleteFav(id, fav_id);
+        
         if (!row) {
             return next(new ApiError(`Favoris introuvable`, {status: 404}));
         }
