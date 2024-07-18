@@ -20,7 +20,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
 
     /**
      * Trouve tous les favoris d'un utilisateur
-     * @param {string} user_id - l'id de l'utilisateur qui possède les favoris
+     * @param {string} user_id - l'ID de l'utilisateur qui possède les favoris
      * @returns {Promise<Object>} - Renvoie un objet avec les favoris de l'utilisateur
      */
     async getAllFavorites(user_id) {
@@ -41,6 +41,12 @@ export default class PlaceDatamapper extends CoreDatamapper {
 
     }
 
+    /**
+     * Créé un nouveau favori
+     * @param {Object} place_id - L'ID de la place à ajouter en favori
+     * @param {Object} user_id - L'ID de l'utilisateur qui ajoute le favori
+     * @returns {Promise<Object} Renvoie l'ID de la place, l'ID du user et l'ID du favori
+     */
     async createFav(place_id, user_id) {
         const result = await this.client.query(`
         INSERT INTO "userHasFavoritesPlaces" (place_id, user_id)
@@ -57,6 +63,12 @@ export default class PlaceDatamapper extends CoreDatamapper {
         return result.rows[0];
     }
 
+    /**
+     * Supprime un favori
+     * @param {number} id - L'ID de l'utillisateur qui possède le favori
+     * @param {number} fav_id - L'ID du favori
+     * @returns {Promise<boolean>} Renvoie l'ID de la place, l'ID du user et l'ID du favori
+     */
     async deleteFav(id, fav_id) {
         const result = await this.client.query(`
         DELETE FROM "userHasFavoritesPlaces"
