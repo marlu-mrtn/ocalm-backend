@@ -19,7 +19,12 @@ export default class PlacesController extends CoreController {
      */
     static properDatamapper = placeDatamapper;
 
-
+    /**
+     * Méthode pour récupérer les favoris d'un utilisateur via son id.
+     * @param {Object} req - Objet de requête.
+     * @param {Object} res - Objet de réponse.
+     * @returns {Promise<Object>} Les données récupérées.
+     */
     static async getAllFavorites(req, res, next) {
         console.log("je rentre dans mon controller getallfavorite", req.params);
         const { id } = req.params;
@@ -30,8 +35,14 @@ export default class PlacesController extends CoreController {
         }
 
         res.status(200).json({ data: rows });
-    }
+    };
 
+    /**
+     * Méthode pour ajouter un favori
+     * @param {Object} req - Objet de requête.
+     * @param {Object} res - Objet de réponse.
+     * @returns {Promise<Object>} Les données créées.
+     */
     static async createFav(req, res) {
         const { id } = req.params;
         const place_id = req.body.place_id;
@@ -39,8 +50,14 @@ export default class PlacesController extends CoreController {
         const row = await this.properDatamapper.createFav(place_id, id);
 
         return res.status(201).json({ data: row });
-    }
+    };
 
+    /**
+     * Supprime un favori par son ID.
+     * @param {Object} req - Objet de requête.
+     * @param {Object} res - Objet de réponse.
+     * @returns {Promise<void>}
+     */
     static async deleteFav(req, res, next) {
         const { id } = req.params;
         const { fav_id } = req.params;
@@ -52,6 +69,6 @@ export default class PlacesController extends CoreController {
 
         return res.status(200).json({ data: row });
 
-    }
+    };
 
 }
