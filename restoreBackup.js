@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import logger from './app/utils/logger.utils.js';
 
 import { exec } from 'child_process';
 
@@ -18,14 +19,14 @@ const command = `
 
 exec(command, (error, stdout, stderr) => {
     if (error) {
-        console.error(`Erreur lors de la sauvegarde : ${error.message}`);
+        logger.error(`Erreur lors de la sauvegarde : ${error.message}`);
         return;
     }
     if (stderr) {
-        console.error(`Erreur : ${stderr}`);
+        logger.error(`Erreur : ${stderr}`);
         return;
     }
-    console.log(`Restoration réussie : ${stdout}`);
+    logger.info(`Restoration réussie : ${stdout}`);
 });
 
 

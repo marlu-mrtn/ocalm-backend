@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import logger from './app/utils/logger.utils.js';
 
 import { exec } from 'child_process';
 
@@ -12,12 +13,12 @@ const command = `pg_dump -h ${hostname} -p ${port} -U ${username} -W -F c -b -v 
 
 exec(command, (error, stdout, stderr) => {
     if (error) {
-        console.error(`Erreur lors de la sauvegarde : ${error.message}`);
+        logger.error(`Erreur lors de la sauvegarde : ${error.message}`);
         return;
     }
     if (stderr) {
-        console.error(`Erreur : ${stderr}`);
+        logger.error(`Erreur : ${stderr}`);
         return;
     }
-    console.log(`Sauvegarde réussie : ${stdout}`);
+    logger.info(`Sauvegarde réussie : ${stdout}`);
 });
