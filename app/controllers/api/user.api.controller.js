@@ -18,7 +18,12 @@ export default class UserApiController extends CoreController {
      */
     static properDatamapper = userDatamapper;
 
-
+    /**
+     * Fonction d'inscription
+     * @param {Object} req - La requête HTTP.
+     * @param {Object} res - La réponse HTTP.
+     * @throws {Error} L'erreur donnée
+     */
     static async signUp(req, res, next) {
 
         const { username, email, password, passwordConfirm } = req.body;
@@ -51,6 +56,13 @@ export default class UserApiController extends CoreController {
 
     };
 
+
+    /**
+     * Connexion d'un utilisateur.
+     * @param {Object} req - La requête HTTP.
+     * @param {Object} res - La réponse HTTP.
+     * @returns {Object} Renvoie le token
+     */
     static async login(req, res, next) {
 
         const { email, password } = req.body;
