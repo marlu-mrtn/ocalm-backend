@@ -17,21 +17,26 @@ const router = express.Router();
  * @property {string} name - Nom de la place
  * @property {string} description - Description de la place
  * @property {array<string>} journey - Itinéraire de la place
+ * @property {array<string>} picture - Photos de la place
+ * @property {integer} user_id - ID de l'utilisateur
+ * @property {string} created_at - Date de création
+ * @property {string} updated_at - Date de mise à jour
+ * @property {string} slug - Slug de la place
+ * @property {string} gps_location_latitude - Latitude GPS de la place
+ * @property {string} gps_location_longitude - Longitude GPS de la place
  */
 
 
 router.route('/')
     /**
       * GET /places
-        * Route pour récupérer touters les places.
         * @summary Affiche toutes les places
         * @tags place
-        * @return {[Place]} 200 - success response - application/json
+        * @return {array<Place>} 200 - success response - application/json
     */
     .get(wrapper(Controller.findAll.bind(Controller)))
     /**
       * POST /places
-        * Route pour créer une nouvelle place.
         * @summary Créé une nouvelle place
         * @tags place
         * @param {Input} id.path.required  - L'identifiant de la place.
@@ -44,7 +49,6 @@ router.route('/')
 router.route('/:id(\\d+)')
     /**
       * GET /places/{id}
-        * Route pour récupérer une place spécifique.
         * @summary Affiche une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
@@ -55,7 +59,6 @@ router.route('/:id(\\d+)')
     .get(isAuth.verifyToken, wrapper(Controller.findById.bind(Controller)))
     /**
       * PATCH /places/{id}
-        * Route pour les modifications sur une place spécifique.
         * @summary Modifie une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
@@ -66,7 +69,6 @@ router.route('/:id(\\d+)')
     .patch(isAuth.verifyToken, validate(updateSchema, 'body'),wrapper(Controller.update.bind(Controller)))
     /**
       * DELETE /places/{id}
-        * Route pour les modifications sur une place spécifique.
         * @summary Supprime une place spécifique
         * @tags place
         * @param {number} id.path.required  - L'identifiant de la place.
@@ -79,7 +81,6 @@ router.route('/:id(\\d+)')
 router.route('/favorite/:id(\\d+)')
     /**
       * GET /places/favorite/{id}
-        * Route pour récupérer tous les favoris d'un user
         * @summary Affiche tous les favoris d'un user
         * @tags favoris
         * @return {[Place]} 200 - success response - application/json
@@ -87,7 +88,6 @@ router.route('/favorite/:id(\\d+)')
     .get(isAuth.verifyToken,wrapper(Controller.getAllFavorites.bind(Controller)))
     /**
        * POST /places/favorite/{id}
-         * Route pour créer un favori.
          * @summary Créé un favori
          * @tags favoris
          * @return {Place} 200 - success response - application/json
@@ -99,7 +99,6 @@ router.route('/favorite/:id(\\d+)')
 router.route('/favorite/:id(\\d+)/:fav_id(\\d+)')
     /**
       * DELETE /places/favorite/{id}/{fav_id}
-        * Route pour la suppression d'un favori.
         * @summary Supprime un favori spécifique
         * @tags favoris
         * @param {number} id.path.required  - L'identifiant du user.
