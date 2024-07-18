@@ -22,9 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 //  res.sendStatus(204);  // Réponse sans contenu (204 No Content)
 //});
 const corsOptions = {
-  origin: '*', // Remplacez par vos domaines spécifiques en production
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: '*', // Remplacez par vos domaines spécifiques en production
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -35,13 +35,13 @@ app.options('*', cors(corsOptions));
 
 app.use((req, _, next) => {
     const infos = {
-      url: req.url,
-      method: req.method,
-      agent: req.headers['user-agent'],
+        url: req.url,
+        method: req.method,
+        agent: req.headers['user-agent'],
     };
     logger.http(req.url, infos);
     next();
-  });
+});
 
 docMiddleware(app);
 

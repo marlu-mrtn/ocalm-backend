@@ -19,7 +19,7 @@ const isAuth = (req, _, next) => {
         req.user = tokenInfos.user;
         next();
 
-    } catch (err) {
+    } catch {
         return next(new ApiError('Token invalide', { status: 401 }));
     }
 };

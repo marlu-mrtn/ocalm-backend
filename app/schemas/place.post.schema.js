@@ -11,12 +11,12 @@ import Joi from 'joi';
  * @property {Joi.StringSchema} description - La description de la place, doit être une chaîne de caractères.
  */
 export default Joi.object({
-  name: Joi.string().min(2),
-  gps_location_latitude: Joi.number().precision(8),
-  gps_location_longitude: Joi.number().precision(8),
-  picture: Joi.array().items(Joi.string()),
-  journey: Joi.array().items(Joi.string()),
-  description: Joi.string(),
-  user_id: Joi.number(),
-  slug: Joi.string().min(2),
+    name: Joi.string().min(2),
+    gps_location_latitude: Joi.number().precision(8),
+    gps_location_longitude: Joi.number().precision(8),
+    picture: Joi.array().items(Joi.string()),
+    journey: Joi.array().items(Joi.string()),
+    description: Joi.string(),
+    user_id: Joi.number(),
+    slug: Joi.string().min(2),
 });

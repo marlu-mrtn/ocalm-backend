@@ -15,20 +15,20 @@ export default class PlacesController extends CoreController {
     static entityName = "place";
     /**
      * Le datamapper associé.
-     * @type {Object} 
+     * @type {Object}
      */
     static properDatamapper = placeDatamapper;
 
 
     static async getAllFavorites(req, res, next) {
-	console.log("je rentre dans mon controller getallfavorite", req.params);
+        console.log("je rentre dans mon controller getallfavorite", req.params);
         const { id } = req.params;
-        const rows = await this.properDatamapper.getAllFavorites(id);   
+        const rows = await this.properDatamapper.getAllFavorites(id);
 
         if (!rows) {
             return next(new ApiError(`Pas de ${this.entityName}s favorites`, {status: 404}));
         }
-        
+
         res.status(200).json({ data: rows });
     }
 
