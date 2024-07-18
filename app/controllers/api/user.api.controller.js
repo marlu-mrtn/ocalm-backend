@@ -2,14 +2,28 @@ import CoreController from './core.api.controller.js';
 import { userDatamapper } from '../../datamappers/index.datamapper.js';
 import encrypt from '../../utils/encrypt.utils.js';
 import jwt from 'jsonwebtoken';
-// import authMiddleware from '../../middlewares/jwt.middleware.js';
+
 
 export default class UserApiController extends CoreController {
 
+    /**
+     * Nom de l'entité.
+     * @type {string}
+     */
     static entityName = "user";
+
+    /**
+     * Datamapper spécifique pour les utilisateurs.
+     * @type {Object}
+     */
     static properDatamapper = userDatamapper;
 
-
+    /**
+     * Fonction d'inscription d'un nouvel utilisateur
+     * @param {Object} req - La requête HTTP.
+     * @param {Object} res - La réponse HTTP.
+     * @throws {Error} L'erreur renvoyée
+     */
     static async signUp(req, res) {
 
         const { username, email, password, passwordConfirm } = req.body;
@@ -46,6 +60,14 @@ export default class UserApiController extends CoreController {
 
     };
 
+
+
+    /**
+     * Connexion d'un utilisateur.
+     * @param {Object} req - La requête HTTP.
+     * @param {Object} res - La réponse HTTP.
+     * @returns {Object} Retourne le token
+     */
     static async login(req, res) {
 
         const { email, password } = req.body;
