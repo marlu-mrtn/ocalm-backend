@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+/*import jwt from 'jsonwebtoken';
 import ApiError from '../errors/api.error.js';
 
 export default {
@@ -6,7 +6,7 @@ export default {
     async setCache(cache) {
         this.cache = cache;
     },
-    
+
     async generateToken(data, generateRefresh = false, user) {
         // la durée est en secondes
         const mainTokenTTL = 60 * 15;
@@ -15,48 +15,48 @@ export default {
         const refreshTokenExp = Math.round((Date.now() / 1000) + refreshTokenTTL);
 
         const mainToken = jwt.sign(
-            { 
+            {
                 exp: mainTokenExp,
-                data
-            }, process.env.JWT_SECRET
+                data,
+            }, process.env.JWT_SECRET,
         );
-        
+
         if(generateRefresh){
             const refreshToken = jwt.sign(
                 {
-                    exp: refreshTokenExp, 
+                    exp: refreshTokenExp,
                     data: {
                         user_id: user.id,
-                        username: user.username
-                    }
-                }, process.env.JWT_SECRET
+                        username: user.username,
+                    },
+                }, process.env.JWT_SECRET,
             );
 
             await this.cache.set(
                 `refresh:${data.id}`,
                 refreshToken,
                 {
-                    ttl: refreshTokenTTL
-                }
-              );
+                    ttl: refreshTokenTTL,
+                },
+            );
 
             return {
                 mainToken: {
                     token: mainToken,
-                    exp: mainTokenExp
+                    exp: mainTokenExp,
                 },
 
                 refreshToken: {
                     token: refreshToken,
-                    exp: refreshTokenExp
+                    exp: refreshTokenExp,
                 },
             };
         } else {
             return {
                 mainToken: {
                     token: mainToken,
-                    exp: mainTokenExp
-                }
+                    exp: mainTokenExp,
+                },
             };
         };
     },
@@ -69,31 +69,31 @@ export default {
                 throw new ApiError('Refresh token absent ou non correspondant');
             }
             return data;
-        } catch(err) {
+        } catch {
             throw new ApiError('Authentication échouée', {
                 extensions: {
                     code: 'AUTHENTICATION_FAILED',
                     http: {
-                        status: 400
-                    }
-                }
+                        status: 400,
+                    },
+                },
             });
         };
-      },
+    },
 
-      verifyToken(res, req, next) {
+    verifyToken(res, req, next) {
         const bearerHeader = req.headers['authorization'];
-	console.log("je suis dans verify token, le bearerHeader",bearerHeader);
+        console.log("je suis dans verify token, le bearerHeader",bearerHeader);
         if (!bearerHeader) {
             return next(new ApiError('Token absent', { status: 401 }));
         }
-    
+
         const [, token] = bearerHeader.split(' ');
-    
+
         if (!token) {
             return next(new ApiError('Token absent', { status: 401 }));
         }
-    
+
         try {
             const tokenInfos = verifyToken(token);
             // req.user = tokenInfos.userFound; // Stockez les informations de l'utilisateur dans la requête si nécessaire
@@ -101,6 +101,7 @@ export default {
         } catch (err) {
             next(err); // Passe une ApiError en cas d'erreur de vérification du token
         }
-    }
-    
+    },
+
 };
+*/

@@ -47,59 +47,59 @@ describe('PlaceApiController methods', () => {
         });
     });
 
-let createdPlaceId;
+    let createdPlaceId;
 
-describe('create', () => {
-    beforeEach(async () => {
-        mockReq = { body: { name: `gruic${Date.now()}`, journey: ["park"], description: "quel super parc", user_id : 5 } };
-        try {
-            await PlaceApiController.create(mockReq, mockRes, mockNext);
-            if (mockRes.json.mock.calls.length > 0) {
-                createdPlaceId = mockRes.json.mock.calls[0][0].data.id;
+    describe('create', () => {
+        beforeEach(async () => {
+            mockReq = { body: { name: `gruic${Date.now()}`, journey: ["park"], description: "quel super parc", user_id : 5 } };
+            try {
+                await PlaceApiController.create(mockReq, mockRes, mockNext);
+                if (mockRes.json.mock.calls.length > 0) {
+                    createdPlaceId = mockRes.json.mock.calls[0][0].data.id;
+                }
+            } catch (error) {
+                console.error('Create error:', error.message);
             }
-        } catch (error) {
-            console.error('Create error:', error.message);
-        }
+        });
+
+        test('res.status called', () => {
+            expect(mockRes.status).toHaveBeenCalledWith(201);
+        });
+
+        test('res.json called', () => {
+            expect(mockRes.json).toHaveBeenCalled();
+        });
+
+        test('create method should call res.json with an object with arguments', () => {
+            expect(mockRes.json).toHaveBeenCalledWith({ data: expect.any(Object) });
+        });
     });
 
-    test('res.status called', () => {
-        expect(mockRes.status).toHaveBeenCalledWith(201);
-    });
+    describe('delete', () => {
+        beforeEach(async () => {
+            if (createdPlaceId) {
+                mockReq = { params: { id: createdPlaceId } };
+                await PlaceApiController.delete(mockReq, mockRes, mockNext);
+            }
+        });
 
-    test('res.json called', () => {
-        expect(mockRes.json).toHaveBeenCalled();
-    });
+        test('res.status called', () => {
+            if (createdPlaceId) {
+                expect(mockRes.status).toHaveBeenCalledWith(204);
+            }
+        });
 
-    test('create method should call res.json with an object with arguments', () => {
-        expect(mockRes.json).toHaveBeenCalledWith({ data: expect.any(Object) });
-    });
-});
+        test('res.send called', () => {
+            if (createdPlaceId) {
+                expect(mockRes.send).toHaveBeenCalled();
+            }
+        });
 
-describe('delete', () => {
-    beforeEach(async () => {
-        if (createdPlaceId) {
-            mockReq = { params: { id: createdPlaceId } };
-            await PlaceApiController.delete(mockReq, mockRes, mockNext);
-        }
+        test('delete method should call res.send with no arguments', () => {
+            if (createdPlaceId) {
+                expect(mockRes.send).toHaveBeenCalledWith();
+            }
+        });
     });
-
-    test('res.status called', () => {
-        if (createdPlaceId) {
-            expect(mockRes.status).toHaveBeenCalledWith(204);
-        }
-    });
-
-    test('res.send called', () => {
-        if (createdPlaceId) {
-            expect(mockRes.send).toHaveBeenCalled();
-        }
-    });
-
-    test('delete method should call res.send with no arguments', () => {
-        if (createdPlaceId) {
-            expect(mockRes.send).toHaveBeenCalledWith();
-        }
-    });
-});
 
 });

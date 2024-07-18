@@ -8,8 +8,8 @@ import Joi from 'joi';
 
  */
 export default Joi.object({
-        
-        place_id: Joi.number(), 
-        user_id: Joi.number()
+
+    place_id: Joi.number(),
+    user_id: Joi.number(),
 
 });

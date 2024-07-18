@@ -11,7 +11,7 @@ router.use('/', apiRouter);
 
 router.use(() => {
     throw new ApiError('Not Found', {status: 404});
-  });
+});
 
 router.use(errorMiddleware);
 

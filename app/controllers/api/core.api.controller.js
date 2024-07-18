@@ -25,7 +25,7 @@ export default class CoreController {
      */
     static async findAll(_, res) {
         const rows = await this.properDatamapper.findAll();
-        
+
         return res.json({ data: rows });
     }
 
@@ -80,7 +80,7 @@ export default class CoreController {
      * Supprime une entité par son ID.
      * @param {Object} req - Objet de requête.
      * @param {Object} res - Objet de réponse.
-     * @returns {Promise<void>} 
+     * @returns {Promise<void>}
      */
     static async delete(req, res, next) {
         const { id } = req.params;
@@ -89,6 +89,6 @@ export default class CoreController {
             return next(new ApiError(`${this.entityName} introuvable`, {status: 404}));
         }
 
-         return res.status(204).send();
+        return res.status(204).send();
     }
 }

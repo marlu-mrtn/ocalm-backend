@@ -5,14 +5,12 @@ import ApiError from '../errors/api.error.js';
 export default {
     generateToken: (user) => {
         return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
-            expiresIn: '1h'
+            expiresIn: '1h',
         });
     },
 
     verifyToken: (req,res,next) => {
-	console.log("coucou", req.headers.authorization);
-	const token = req.headers.authorization;
-	console.log("ICI LE TOKEN ICIIIIIIIIIIIII", token);
+        const token = req.headers.authorization;
         if (!token) {
             throw new ApiError(401, 'Token absent');
         }
@@ -24,14 +22,14 @@ export default {
         }
 
         const token1 = bearer[1];
-	console.log(token1);
+        console.log(token1);
 
         try {
             const response= jwt.verify(token1, process.env.JWT_SECRET);
-		console.log("response de mon jwt.verify",response.userFound);
-		req.userId=response.userFound;
-		next();
-        } catch (error) {
+            console.log("response de mon jwt.verify",response.userFound);
+            req.userId=response.userFound;
+            next();
+        } catch {
             throw new ApiError(401, 'Token invalide');
         }
     },

@@ -8,7 +8,7 @@ import Joi from 'joi';
  * @property {Joi.StringSchema} password - Le mot de passe de l'utilisateur, doit être une chaîne de caractères avec un minimum de 8 caractères.
  */
 export default Joi.object({
-  username: Joi.string().min(2).required(),
-  email: Joi.string().min(2).email({ tlds: { allow: false } }).required(),
-  password: Joi.string().min(8).required(),
+    username: Joi.string().min(2).required(),
+    email: Joi.string().min(2).email({ tlds: { allow: false } }).required(),
+    password: Joi.string().min(8).required(),
 });

@@ -9,8 +9,8 @@ import Joi from 'joi';
  * @property {Joi.AnySchema} password_confirmation - La confirmation du mot de passe, doit correspondre au champ `password`.
  */
 export default Joi.object({
-  username: Joi.string().min(2),
-  email: Joi.string().min(2).email({ tlds: { allow: false } }),
-  password: Joi.string().min(8),
-  passwordConfirm: Joi.ref('password'),
+    username: Joi.string().min(2),
+    email: Joi.string().min(2).email({ tlds: { allow: false } }),
+    password: Joi.string().min(8),
+    passwordConfirm: Joi.ref('password'),
 });

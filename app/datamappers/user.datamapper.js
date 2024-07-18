@@ -17,7 +17,7 @@ export default class UserDatamapper extends CoreDatamapper {
 
     /**
      * Trouve un utilisateur via son email et non via son id
-     * @param {string} email - l'email de la personne à rechercher 
+     * @param {string} email - l'email de la personne à rechercher
      * @returns {Promise<Object>} - Renvoie un objet avec les données de l'utilisateur
      */
     async findByEmail(email) {
