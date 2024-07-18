@@ -10,6 +10,6 @@ const DBHOST = process.env.DB_HOST || 'localhost';
 const httpServer = createServer(app);
 
 httpServer.listen(PORT, () => {
-    logger.info(`Server is running on http://${DBHOST}:${PORT}`)
+    logger.info(`Yeaaay le serveur tourne sur http://${DBHOST}:${PORT}`)
 });
 

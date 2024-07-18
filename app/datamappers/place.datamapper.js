@@ -18,9 +18,12 @@ export default class PlaceDatamapper extends CoreDatamapper {
     static writeTableName = 'place';
 
 
-
+    /**
+     * Trouve tous les favoris d'un utilisateur
+     * @param {string} user_id - l'id de l'utilisateur qui possède les favoris
+     * @returns {Promise<Object>} - Renvoie un objet avec les favoris de l'utilisateur
+     */
     async getAllFavorites(user_id) {
-        console.log("je rentre dans le getallfavorite avec l'id", user_id);
         const result = await this.client.query(`
         SELECT DISTINCT
 	    "${this.constructor.readTableName}"."id" AS ${this.constructor.readTableName}_id,
@@ -33,7 +36,7 @@ export default class PlaceDatamapper extends CoreDatamapper {
         	ON "user"."id" = "userHasFavoritesPlaces"."user_id"
         WHERE "userHasFavoritesPlaces"."user_id" = $1
         `, [user_id]);
-        console.log("le resultat de ma recher pour tout les favoris dans datamapper",result);
+        
         return result.rows;
 
     }

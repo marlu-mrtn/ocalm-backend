@@ -66,8 +66,7 @@ export default class CoreDatamapper {
      */
     async create(input) {
         const columnNames = Object.keys(input);
-        // values = valeurs des colonnes
-        const values = Object.values(input);
+        const columnValues = Object.values(input);
         // on créé les $1, $2, $3, etc.
         const valuesPosition = columnNames.map((_, index) => `$${index + 1}`).join(', ');
 
@@ -75,12 +74,13 @@ export default class CoreDatamapper {
         INSERT INTO "${this.constructor.writeTableName}" (${[...columnNames]})
         VALUES (${valuesPosition})
         RETURNING *`,
-        values);
+        [...columnValues]);
 
         if (this.constructor.writeTableName === 'place') {
             result.rows.map(row => {
                 row.gps_location_latitude = parseFloat(row.gps_location_latitude);
                 row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+
                 return row;
             });
         };
@@ -96,8 +96,7 @@ export default class CoreDatamapper {
      */
     async update(id, input) {
         const columnNames = Object.keys(input);
-        // values = valeurs des colonnes
-        const values = Object.values(input);
+        const columnValues = Object.values(input);
         // on créé les $2, $3, etc à partir du $2 car $1 est l'id dans le format SET
         const valuesPosition = columnNames.map((column, index) => `"${column}" = $${index + 2}`).join(', ');
 
@@ -106,19 +105,19 @@ export default class CoreDatamapper {
         SET ${valuesPosition} , updated_at = NOW()
         WHERE id = $1
         RETURNING *`,
-        [id, ...values]);
+        [id, ...columnValues]);
 
         if (this.constructor.writeTableName === 'place') {
             result.rows.map(row => {
                 row.gps_location_latitude = parseFloat(row.gps_location_latitude);
                 row.gps_location_longitude = parseFloat(row.gps_location_longitude);
+                
                 return row;
             });
         };
 
         return result.rows[0];
     };
-
 
     /**
      * Supprime une ligne en fonction de son ID

@@ -10,7 +10,6 @@ export default class ApiError extends Error {
             this.status = null;
             this.cause = null;
         }
-        // Maintenir une trace de la pile correcte (seulement dans les moteurs V8 comme Node.js)
         if (Error.captureStackTrace) {
             Error.captureStackTrace(this, this.constructor);
         }

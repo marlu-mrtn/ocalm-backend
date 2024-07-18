@@ -7,7 +7,6 @@ const generateFakeData = async () => {
     for (let i = 0; i < 10; i++) {
         const name = faker.person.fullName();
         const email = faker.internet.email();
-        // const password = faker.internet.password({ length: 10})
         const password = faker.helpers.fromRegExp('#1gK[a-zA-Z0-9]{10}')
 
         await client.query(
@@ -28,5 +27,5 @@ const generateFakeData = async () => {
 };
 
 generateFakeData()
-    .then(() => console.log("Data generation completed"))
-    .catch((err) => console.error("Error generating data", err));
+    .then(() => console.log("Génération de données terminée"))
+    .catch((err) => console.error("Erreur dans la génération de données", err));
