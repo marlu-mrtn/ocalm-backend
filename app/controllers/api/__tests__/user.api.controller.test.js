@@ -81,7 +81,7 @@ describe('UserApiController methods', () => {
         test('signUp method should call res.json with an object with arguments', () => {
             if (mockRes.json.mock.calls.length > 0) {
                 expect(mockRes.json).toHaveBeenCalledWith({
-                    message: "User registered successfully",
+                    message: "Utilisateur bien enregistré",
                     newUser: expect.any(Number),
                 });
             }
