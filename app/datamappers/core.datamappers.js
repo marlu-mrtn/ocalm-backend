@@ -38,6 +38,19 @@ export default class CoreDatamapper {
      * @returns {Promise<Array>}
      */
     async findAll() {
+        if (this.constructor.writeTableName = "place"){
+            const result = await this.client.query(`
+            SELECT 
+            "place".*,
+            "tag"."name" AS "tag",
+            "tag"."color" AS "tag_color"
+            FROM "place"
+            JOIN "placeHasTag"
+                ON "placeHasTag"."place_id" = "place"."id"
+            JOIN "tag"
+                ON "tag"."id" = "placeHasTag"."tag_id";`);
+        }
+
         const result = await this.client.query(`
         SELECT *
         FROM "${this.constructor.readTableName}"`);

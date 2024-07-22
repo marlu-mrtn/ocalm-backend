@@ -26,7 +26,6 @@ export default class PlacesController extends CoreController {
      * @returns {Promise<Object>} Les données récupérées.
      */
     static async getAllFavorites(req, res, next) {
-        console.log("je rentre dans mon controller getallfavorite", req.params);
         const { id } = req.params;
         const rows = await this.properDatamapper.getAllFavorites(id);
 
@@ -69,6 +68,12 @@ export default class PlacesController extends CoreController {
 
         return res.status(200).json({ data: row });
 
+    };
+
+    static async getAllWithTags(req,res,next) {
+        const rows = await this.properDatamapper.getAllWithTags();
+
+        return res.json({ data: rows });
     };
 
 }

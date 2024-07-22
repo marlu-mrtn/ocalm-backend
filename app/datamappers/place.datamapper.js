@@ -85,4 +85,19 @@ export default class PlaceDatamapper extends CoreDatamapper {
 
         return result.rows[0];
     }
+
+    async getAllWithTags() {
+            const result = await this.client.query(`
+            SELECT 
+            "place".*,
+            "tag"."name" AS "tag",
+            "tag"."color" AS "tag_color"
+            FROM "place"
+            JOIN "placeHasTag"
+                ON "placeHasTag"."place_id" = "place"."id"
+            JOIN "tag"
+                ON "tag"."id" = "placeHasTag"."tag_id"`);
+
+        return result.rows;
+    }
 }

@@ -2,6 +2,7 @@ import express from 'express';
 import registerRouter from './register.api.router.js';
 import userRouter from './user.api.router.js';
 import placeRouter from './place.api.router.js';
+import tagRouter from './tag.api.router.js';
 import loginRouter from './login.api.router.js'
 
 const router = express.Router();
@@ -33,6 +34,14 @@ router.use('/register', registerRouter);
  * @memberof module:routers - ce routeur découle du router principal
  */
 router.use('/places', placeRouter);
+
+/**
+ * Routeur pour les tags.
+ * @name /tags
+ * @function
+ * @memberof module:routers - ce routeur découle du router principal
+ */
+router.use('/tags', tagRouter);
 
 /**
  * Routeur pour les connexions.

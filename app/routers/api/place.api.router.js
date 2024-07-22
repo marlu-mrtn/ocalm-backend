@@ -33,8 +33,9 @@ router.route('/')
         * @summary Affiche toutes les places
         * @tags place
         * @return {array<Place>} 200 - success response - application/json
-    */
-    .get(wrapper(Controller.findAll.bind(Controller)))
+    */ 
+    //! Penser à revoir regex dans contraintes sqitch pour les tags --------------------------------
+    .get(wrapper(Controller.getAllWithTags.bind(Controller)))
     /**
       * POST /places
         * @summary Créé une nouvelle place
